@@ -1,0 +1,130 @@
+{%- comment -%}
+  Wix replica: June Gold Forming (shop-june.com/june-gold-forming), measured at 1440px desktop and 375px phone.
+  Background videos are hosted in Content > Files; Wix uses a different crop for phones, so there are two of each.
+{%- endcomment -%}
+{%- render 'wx-base' -%}
+{%- capture arrow -%}<svg viewBox="0 0 22 10" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M0 5h20.5M16.5 1l4 4-4 4"/></svg>{%- endcapture -%}
+{%- assign s = section.settings -%}
+<div class="wx wxjg">
+  <div class="wxjg__vid wxjg__vid--hero">
+    <video class="wxjg__d" autoplay muted loop playsinline preload="metadata" poster="{{ 'wx-img-36f76ef6.jpg' | file_img_url: '2000x' }}"{% if s.hero_d != blank %} data-src="{{ s.hero_d }}"{% endif %}></video>
+    <video class="wxjg__m" autoplay muted loop playsinline preload="metadata" poster="{{ 'wx-img-eb7a4030.jpg' | file_img_url: '900x' }}"{% if s.hero_m != blank %} data-src="{{ s.hero_m }}"{% endif %}></video>
+  </div>
+
+  <section class="wxjg__intro">
+    <h1 class="wxjg__h1 wxA">June Gold Forming</h1>
+    <div class="wxjg__copy wxB">
+      <p>We believe fine jewellery should be for more than just special occasions.</p>
+      <p>&nbsp;</p>
+      <p>Jewellery is personal, often becoming part of our stories in unexpected ways. We wanted to make fine jewellery more accessible for people looking for forever pieces they can actually live in.&nbsp;That journey began with a simple question: could we rethink how fine jewellery is made?</p>
+      <p>&#8203;</p>
+      <p>June Gold Forming is the result of over a year of research and experimentation. Our proprietary process forms a layer of certified 24K gold, ranging from 0.1g to 1g, onto a base of 925 sterling silver.</p>
+      <p>&#8203;</p>
+      <p>Unlike traditional plating or vermeil, which only apply gold to the surface, June Gold Forming structurally integrates real gold into each piece itself. This preserves the intrinsic value and lasting finish of gold while creating jewellery that is lightweight, hypoallergenic, anti-tarnish, and durable for everyday wear.</p>
+    </div>
+    <a class="wxjg__more wxB" href="/pages/about-us">Learn More {{ arrow }}</a>
+  </section>
+
+  <section class="wxjg__forms">
+    <h2 class="wxjg__h2 wxA">UNDERSTANDING FORMS OF GOLD JEWELLERY</h2>
+    <div class="wxjg__grid">
+      <div class="wxjg__form"><img src="{{ 'wx-img-9225617c.png' | file_img_url: '500x' }}" alt="Solid gold" loading="lazy"><p class="wxB">Solid Gold is the purest form of gold jewellery, often reserved for occasions, and out of reach for everyday wear.</p></div>
+      <div class="wxjg__form"><img src="{{ 'wx-img-6b93995c.png' | file_img_url: '500x' }}" alt="Gold plating" loading="lazy"><p class="wxB">Gold plating is a thin layer of gold polish over low-value metals like brass or copper. Affordable, but without lasting value.</p></div>
+      <div class="wxjg__form"><img src="{{ 'wx-img-2207c7bc.png' | file_img_url: '500x' }}" alt="June Gold Forming" loading="lazy"><p class="wxB">June Gold Forming is 24K gold structurally bonded to sterling silver, not simply coated onto the surface.</p></div>
+    </div>
+  </section>
+
+  <div class="wxjg__vid wxjg__vid--lab">
+    <video class="wxjg__d" autoplay muted loop playsinline preload="none" poster="{{ 'wx-img-7d04886c.jpg' | file_img_url: '2000x' }}"{% if s.lab_d != blank %} data-src="{{ s.lab_d }}"{% endif %}></video>
+    <video class="wxjg__m" autoplay muted loop playsinline preload="none" poster="{{ 'wx-img-65b3046a.jpg' | file_img_url: '900x' }}"{% if s.lab_m != blank %} data-src="{{ s.lab_m }}"{% endif %}></video>
+  </div>
+
+  <section class="wxjg__cats">
+    <h2 class="wxjg__h3 wxA">EXPLORE ALL CATEGORIES</h2>
+    <div class="wxjg__track">
+      {%- assign cats = '73d603a5|Statement Jewellery|One Gram Gold Jewellery by House of June|' | append: s.cat_1 | append: ';8948f17f|Essentials|Everyday Essential Gold Jewellery by House of June|' | append: s.cat_2 | append: ';bc8c7207|Gifting|Gifting by House of June|' | append: s.cat_3 | split: ';' -%}
+      {%- for c in cats -%}{%- assign p = c | split: '|' -%}{%- assign f = 'wx-img-' | append: p[0] | append: '.png' -%}
+        <a class="wxjg__cat" href="{{ p[3] }}">
+          <span class="wxjg__catimg"><img src="{{ f | file_img_url: '1000x' }}" alt="{{ p[2] }}" loading="lazy"></span>
+          <span class="wxjg__catlbl wxB">{{ p[1] }} {{ arrow }}</span>
+        </a>
+      {%- endfor -%}
+    </div>
+  </section>
+</div>
+{%- capture wxcss -%}
+  html:root body .wxjg{--c:#996E5C;color:var(--c)}
+  html:root body .wxjg :where(img,video){display:block;width:100%;height:100%;object-fit:cover}
+  html:root body .wxjg__vid{position:relative;overflow:hidden;background:#EDEBE6}
+  html:root body .wxjg__vid--hero{height:u(763)}
+  html:root body .wxjg__vid--lab{height:u(812)}
+  html:root body .wxjg__d{display:none !important}
+  html:root body .wxjg__intro{height:u(772);padding-top:u(157);text-align:center;background:#FFFDFA}
+  html:root body .wxjg__h1{width:u(285);margin:0 auto;font-size:u(18.269) !important;line-height:u(21.01);letter-spacing:u(.913) !important;text-transform:uppercase !important;color:#A9806F}
+  html:root body .wxjg__copy{width:u(285);margin:u(20) auto 0}
+  html:root body .wxjg__copy p{font-size:u(10) !important;line-height:u(18);letter-spacing:u(.4) !important;color:#A9806F}
+  html:root body .wxjg__more{display:inline-flex !important;align-items:center;gap:u(10);margin-top:u(40);font-size:u(11) !important;letter-spacing:u(.55) !important;line-height:u(14);color:var(--c)}
+  html:root body .wxjg__more svg,html:root body .wxjg__catlbl svg{width:u(14);height:u(8);flex:0 0 auto}
+  html:root body .wxjg__forms{height:u(799);padding-top:u(56);background:#F1F0ED;text-align:center}
+  html:root body .wxjg__h2{width:u(327);margin:0 auto;font-size:u(18.269) !important;line-height:u(28.317);letter-spacing:u(1.279) !important;color:var(--c)}
+  html:root body .wxjg__grid{display:grid;grid-template-columns:u(178) u(178);justify-content:center;column-gap:u(19);row-gap:u(30);margin-top:u(44)}
+  html:root body .wxjg__form{display:flex;flex-direction:column;align-items:center}
+  html:root body .wxjg__form:nth-child(3){grid-column:1 / -1}
+  html:root body .wxjg__form img{width:u(106);height:u(165);object-fit:cover}
+  html:root body .wxjg__form p{width:u(144);margin-top:u(22);font-size:u(12) !important;line-height:u(21);letter-spacing:u(.12) !important;color:var(--c)}
+  html:root body .wxjg__cats{padding:u(108) 0 u(19);background:#FFFDFA linear-gradient(#E8E6E6,#E8E6E6) no-repeat 0 u(75)/100% 1px;text-align:center}
+  html:root body .wxjg__h3{font-size:u(13.462) !important;line-height:u(18.846);letter-spacing:u(.538) !important;color:var(--c)}
+  html:root body .wxjg__track{display:flex;gap:u(2);margin-top:u(40);padding:0 u(8);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+  html:root body .wxjg__track::-webkit-scrollbar{display:none}
+  html:root body .wxjg__cat{flex:0 0 auto;width:u(264);scroll-snap-align:start;color:var(--c)}
+  html:root body .wxjg__catimg{display:block;height:u(321);background:#FFFDFA}
+  html:root body .wxjg__catlbl{display:inline-flex !important;align-items:center;gap:u(8);margin-top:u(24);font-size:u(12) !important;letter-spacing:u(.6) !important;line-height:u(15);color:var(--c)}
+  @media (min-width:750px){
+    html:root body .wxjg__d{display:block !important}
+    html:root body .wxjg__m{display:none !important}
+    html:root body .wxjg__vid--hero{height:u(855)}
+    html:root body .wxjg__vid--lab{height:u(900)}
+    html:root body .wxjg__intro{height:u(900);padding-top:u(159);background:#fff}
+    html:root body .wxjg__h1{width:u(855);font-size:u(27) !important;line-height:u(31.05);letter-spacing:u(1.35) !important}
+    html:root body .wxjg__copy{width:u(1043);margin-top:u(34)}
+    html:root body .wxjg__copy p{font-size:u(18) !important;line-height:u(36);letter-spacing:u(.72) !important}
+    html:root body .wxjg__more{margin-top:u(51);font-size:u(13) !important;letter-spacing:u(.65) !important;line-height:u(16);gap:u(12)}
+    html:root body .wxjg__more svg,html:root body .wxjg__catlbl svg{width:u(16);height:u(9)}
+    html:root body .wxjg__forms{height:u(682);padding-top:u(92)}
+    html:root body .wxjg__h2{width:u(1262);font-size:u(27) !important;line-height:u(40.5);letter-spacing:u(1.89) !important}
+    html:root body .wxjg__grid{grid-template-columns:repeat(3,u(327));column-gap:u(137);row-gap:0;margin-top:u(46)}
+    html:root body .wxjg__form{padding-top:u(37)}
+    html:root body .wxjg__form:nth-child(3){grid-column:auto}
+    html:root body .wxjg__form img{width:u(178);height:u(237)}
+    html:root body .wxjg__form p{width:u(279);margin-top:u(20);font-size:u(16.875) !important;line-height:u(27);letter-spacing:u(.675) !important}
+    html:root body .wxjg__cats{padding:u(180) 0 0;background-position:0 u(55)}
+    html:root body .wxjg__h3{font-size:u(27) !important;line-height:u(37.8);letter-spacing:u(1.08) !important}
+    html:root body .wxjg__track{gap:u(8);margin-top:u(51);padding:0;overflow:visible}
+    html:root body .wxjg__cat{width:calc((100% - var(--u) * 16) / 3);height:u(537)}
+    html:root body .wxjg__catimg{height:u(382)}
+    html:root body .wxjg__catlbl{margin-top:u(40);gap:u(12);font-size:u(14) !important;letter-spacing:u(.7) !important;line-height:u(18)}
+  }
+{%- endcapture -%}<style>{{ wxcss | replace: 'u(', 'calc(var(--u)*' }}</style>
+<script>
+  (function(){
+    /* load only the video that matches the screen (Wix shows a different crop on phones) */
+    var mq=window.matchMedia('(min-width:750px)');
+    function pick(){document.querySelectorAll('.wxjg video[data-src]').forEach(function(v){var want=v.classList.contains('wxjg__d')===mq.matches;if(want&&!v.src){v.src=v.dataset.src;v.play&&v.play().catch(function(){});}});}
+    pick();if(mq.addEventListener)mq.addEventListener('change',pick);
+  })();
+</script>
+{% schema %}
+{
+  "name": "Wix June Gold Forming",
+  "settings": [
+    { "type": "text", "id": "hero_d", "label": "Hero video URL (desktop)" },
+    { "type": "text", "id": "hero_m", "label": "Hero video URL (phone)" },
+    { "type": "text", "id": "lab_d", "label": "Lab video URL (desktop)" },
+    { "type": "text", "id": "lab_m", "label": "Lab video URL (phone)" },
+    { "type": "url", "id": "cat_1", "label": "Statement Jewellery link", "default": "/collections/all" },
+    { "type": "url", "id": "cat_2", "label": "Essentials link", "default": "/collections/all" },
+    { "type": "url", "id": "cat_3", "label": "Gifting link", "default": "/collections/all" }
+  ],
+  "presets": [{ "name": "Wix June Gold Forming" }]
+}
+{% endschema %}

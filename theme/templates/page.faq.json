@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": { "type": "wx-faq", "settings": {} }
+  },
+  "order": ["main"]
+}

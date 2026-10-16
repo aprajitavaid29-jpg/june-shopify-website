@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": { "type": "wx-policy", "settings": {} }
+  },
+  "order": ["main"]
+}

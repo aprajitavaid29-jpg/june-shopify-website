@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": { "type": "wx-split", "settings": { "variant": "returns" } }
+  },
+  "order": ["main"]
+}

@@ -1,0 +1,58 @@
+{%- comment -%}
+  Wix replica: Careers (shop-june.com/careers), measured at 1440px desktop and 375px phone.
+  The Wix form is sent to the store as a Shopify contact form. Shopify forms cannot carry files,
+  so "Upload File" opens an email to careers@ for the résumé.
+{%- endcomment -%}
+{%- render 'wx-base' -%}
+<div class="wx wxca">
+  <div class="wxca__hero"><img src="{{ 'wx-img-7eefa714.jpg' | file_img_url: '2400x' }}" alt="" fetchpriority="high"></div>
+  <h1 class="wxca__title wxB">Careers</h1>
+  <p class="wxca__text wxB">We're building more than a jewellery brand. We're rethinking how fine jewellery is designed, made, and experienced for a new generation.&nbsp;Every piece, interaction, and decision at June is shaped by a team that cares deeply about craftsmanship, creativity, and attention to detail. As we continue to grow, we're always looking for exceptional people who share our ambition to build something enduring.&nbsp;If you're excited by thoughtful design, meaningful work, and the opportunity to help shape the future of June, we'd love to hear from you. Please write to us at <a href="mailto:careers@houseofjune.co">careers@houseofjune.co</a> with your résumé, portfolio, and a brief introduction.</p>
+  <div class="wxca__form">
+    {%- form 'contact', id: 'wx-careers-form' -%}
+      <input type="hidden" name="contact[form]" value="Careers">
+      {%- if form.posted_successfully? -%}<p class="wxca__msg wxB">Thank you, we've received your details. Please email your résumé to careers@houseofjune.co if you haven't yet.</p>{%- endif -%}
+      {%- if form.errors -%}<p class="wxca__msg wxB">{{ form.errors | default_errors }}</p>{%- endif -%}
+      <div class="wxca__grid">
+        <div><label class="wxB" for="wxc-first">First name</label><input id="wxc-first" class="wxB" type="text" name="contact[First name]" autocomplete="given-name"></div>
+        <div><label class="wxB" for="wxc-last">Last name</label><input id="wxc-last" class="wxB" type="text" name="contact[Last name]" autocomplete="family-name"></div>
+        <div><label class="wxB" for="wxc-email">Email</label><input id="wxc-email" class="wxB" type="email" name="contact[email]" autocomplete="email" required></div>
+        <div><label class="wxB" for="wxc-phone">Phone</label><input id="wxc-phone" class="wxB" type="tel" name="contact[phone]" autocomplete="tel"></div>
+        <div class="wxca__up">
+          <span class="wxca__uplabel wxB">Upload Resume</span>
+          <a class="wxca__upbtn wxB" href="mailto:careers@houseofjune.co?subject=R%C3%A9sum%C3%A9"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.5 11.5H18v1h-5.5V18h-1v-5.5H6v-1h5.5V6h1z"/></svg>Upload File</a>
+        </div>
+        <div class="wxca__sub"><button type="submit" class="wxB">Submit</button></div>
+      </div>
+    {%- endform -%}
+  </div>
+</div>
+{%- capture wxcss -%}
+  html:root body .wxca{padding-bottom:u(49)}
+  html:root body .wxca__hero{height:u(160)}
+  html:root body .wxca__hero img{width:100%;height:100%;object-fit:cover;object-position:47% 21%}
+  html:root body .wxca__title{margin:u(34) auto 0;text-align:center;font-size:u(28.846) !important;line-height:u(36.058);text-transform:uppercase !important;color:#996E5C}
+  html:root body .wxca__text{width:u(279);margin:u(19) auto 0;text-align:center;font-size:u(11.538) !important;line-height:u(23.077);letter-spacing:u(.115) !important;color:#000}
+  html:root body .wxca__text a{color:inherit}
+  html:root body .wxca__form{width:u(320);margin:u(107) 0 0 u(31);color:#000}
+  html:root body .wxca__grid{display:grid;grid-template-columns:1fr;row-gap:u(24)}
+  html:root body .wxca__form label,html:root body .wxca__uplabel{display:block;font-size:u(14) !important;line-height:u(19.6);color:#000}
+  html:root body .wxca__form input:not([type=hidden]){display:block;width:100%;height:u(41);margin-top:u(8);padding:0 u(12);border:0;border-bottom:1px solid rgba(0,0,0,.6);border-radius:0;background:#fff;font-size:u(16) !important;color:#000}
+  html:root body .wxca__upbtn{display:inline-flex !important;align-items:center;justify-content:center;gap:u(6);width:u(138);height:u(40);margin-top:u(8);background:#996E5C;color:#fff !important;font-size:u(16) !important}
+  html:root body .wxca__upbtn svg{width:u(24);height:u(24)}
+  html:root body .wxca__sub button{display:block;width:100%;height:u(41);margin-top:0;border:0;border-radius:0;background:#996E5C;color:#fff;font-size:u(16) !important;cursor:pointer}
+  html:root body .wxca__msg{margin-bottom:u(16);font-size:u(14) !important;line-height:u(19.6);color:#996E5C}
+  @media (min-width:750px){
+    html:root body .wxca{padding-bottom:u(127)}
+    html:root body .wxca__hero{height:u(421)}
+    html:root body .wxca__title{margin-top:u(53);font-size:u(52.875) !important;line-height:u(66.094)}
+    html:root body .wxca__text{width:u(862);margin-top:u(23);font-size:u(14.286) !important;line-height:u(28.571);letter-spacing:u(.143) !important}
+    html:root body .wxca__form{width:u(844);margin:u(125) 0 0 u(308)}
+    html:root body .wxca__grid{grid-template-columns:u(410) u(410);column-gap:u(24)}
+    html:root body .wxca__sub{align-self:end;padding-left:u(72)}
+    html:root body .wxca__sub button{width:u(338);margin-top:0}
+  }
+{%- endcapture -%}<style>{{ wxcss | replace: 'u(', 'calc(var(--u)*' }}</style>
+{% schema %}
+{ "name": "Wix careers", "settings": [], "presets": [{ "name": "Wix careers" }] }
+{% endschema %}

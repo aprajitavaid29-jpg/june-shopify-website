@@ -1,0 +1,44 @@
+{%- comment -%}
+  Wix replica: policy pages (shop-june.com/policies/*), measured at 1440px desktop and 375px phone.
+  The page title and body come from the Shopify page; the body text is copied word for word from Wix.
+{%- endcomment -%}
+{%- render 'wx-base' -%}
+{%- assign hero = section.settings.hero | default: 'wx-img-00486626.jpg' -%}
+<div class="wx wxpol">
+  <div class="wxpol__hero"><img src="{{ hero | file_img_url: '2400x' }}" alt="" fetchpriority="high"></div>
+  <h1 class="wxpol__title wxB">{{ page.title }}</h1>
+  <div class="wxpol__body wxE">{{ page.content }}</div>
+</div>
+{%- capture wxcss -%}
+  html:root body .wxpol{padding-bottom:u(10);color:#000}
+  html:root body .wxpol__hero{height:u(693);overflow:hidden}
+  html:root body .wxpol__hero img{width:100%;height:100%;object-fit:cover;object-position:59% 43%}
+  html:root body .wxpol__title{width:u(288);margin:u(11) 0 0 u(19);font-size:u(24) !important;line-height:u(38.4);letter-spacing:u(.48) !important;text-transform:uppercase !important;color:#865F55}
+  html:root body .wxpol__body{width:u(337);margin:u(61) 0 0 u(19)}
+  html:root body .wxpol__body :where(p,li,h6,h2,h3,a,strong,em,span){font-family:inherit !important}
+  html:root body .wxpol__body :where(p,li){font-size:u(14) !important;line-height:u(21);color:#000}
+  html:root body .wxpol__body :where(h6,h3){font-family:'wxA',Arial,sans-serif !important;font-size:u(16) !important;line-height:u(24);margin:0;color:#000}
+  html:root body .wxpol__body h2{font-family:'wxD',Arial,sans-serif !important;font-size:u(32) !important;line-height:u(48);margin:0;color:#000}
+  html:root body .wxpol__body :where(strong,b){font-weight:700 !important}
+  html:root body .wxpol__body :where(ul,ol){margin:0;padding:0 0 0 u(28)}
+  html:root body .wxpol__body ul{list-style:disc}
+  html:root body .wxpol__body ol{list-style:decimal}
+  html:root body .wxpol__body a{text-decoration:none !important;color:inherit}
+  @media (min-width:750px){
+    html:root body .wxpol{padding-bottom:u(28)}
+    html:root body .wxpol__hero{height:u(768)}
+    html:root body .wxpol__title{width:u(691);margin:u(34) 0 0 u(73);font-size:u(42) !important;line-height:u(67.2);letter-spacing:u(10.5) !important}
+    html:root body .wxpol__body{width:u(1294);margin:u(60) 0 0 u(73)}
+    html:root body .wxpol__body :where(p,li){font-size:u(16) !important;line-height:u(24)}
+    html:root body .wxpol__body :where(ul,ol){padding-left:u(32)}
+  }
+{%- endcapture -%}<style>{{ wxcss | replace: 'u(', 'calc(var(--u)*' }}</style>
+{% schema %}
+{
+  "name": "Wix policy page",
+  "settings": [
+    { "type": "text", "id": "hero", "label": "Hero image file name (Content > Files)", "default": "wx-img-00486626.jpg" }
+  ],
+  "presets": [{ "name": "Wix policy page" }]
+}
+{% endschema %}

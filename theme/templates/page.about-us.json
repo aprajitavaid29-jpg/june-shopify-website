@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "wx-about",
+      "settings": {
+        "video_url": "https://cdn.shopify.com/videos/c/vp/64a3a6863c1244eb82b982dc07f400c7/64a3a6863c1244eb82b982dc07f400c7.HD-720p-3.0Mbps-97873686.mp4"
+      }
+    }
+  },
+  "order": ["main"]
+}

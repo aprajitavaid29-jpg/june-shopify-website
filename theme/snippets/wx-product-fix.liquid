@@ -1,0 +1,16 @@
+{%- capture wxcss -%}
+  §.wxp__opt--color{margin-top:u(20)}
+  §.wxp__opt + .wxp__opt--color{margin-top:u(11)}
+  §.wxp__opt--color + .wxp__opt{margin-top:u(13.5)}
+  §.wxp__opt--color + .wxp__ct{margin-top:u(13.5)}
+  §.wxp__buy{margin-top:u(23)}
+  §.wxp__opt--color + .wxp__buy{margin-top:u(21.5)}
+  §.wxp__ct + .wxp__buy{margin-top:u(24.4)}
+  §.wxp__pre{margin:u(23) 0 0 !important;font-size:u(12) !important;line-height:u(15);color:#6B6B6B}
+  §.wxp__opt--color + .wxp__pre{margin-top:u(21.5) !important}
+  §.wxp__ct + .wxp__pre{margin-top:u(24.4) !important}
+  §.wxp__pre + .wxp__buy{margin-top:u(12)}
+  §.wxps__i span{text-transform:inherit !important;letter-spacing:inherit !important;font-size:inherit !important;line-height:inherit !important}
+  §.wxpp__it svg,§.wxps__i svg{max-width:none}
+  §.wxp__rib{display:none}
+{%- endcapture -%}<style>{{ wxcss | replace: 'u(', 'calc(var(--u)*' | replace: '§', 'html:root body ' }}</style>

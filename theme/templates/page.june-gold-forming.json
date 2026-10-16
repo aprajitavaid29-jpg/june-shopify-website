@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "main": {
+      "type": "wx-jgf",
+      "settings": {
+        "hero_d": "https://cdn.shopify.com/videos/c/vp/c422a0204330444685be2ec7dcf435bb/c422a0204330444685be2ec7dcf435bb.SD-480p-0.9Mbps-97883911.mp4",
+        "hero_m": "https://cdn.shopify.com/videos/c/vp/fbffeac6d12d4c6c9951a04a2c699c23/fbffeac6d12d4c6c9951a04a2c699c23.HD-720p-1.6Mbps-97883914.mp4",
+        "lab_d": "https://cdn.shopify.com/videos/c/vp/308dba04c3c8483cac8afe5ad120847b/308dba04c3c8483cac8afe5ad120847b.HD-720p-2.1Mbps-97883913.mp4",
+        "lab_m": "https://cdn.shopify.com/videos/c/vp/fadeb8d4935f48b494b84da8a3e5805b/fadeb8d4935f48b494b84da8a3e5805b.HD-720p-1.6Mbps-97883916.mp4",
+        "cat_1": "/collections/more-is-more-statement-pieces",
+        "cat_2": "/collections/everyday-essentials",
+        "cat_3": "/collections/gifts-under-20k"
+      }
+    }
+  },
+  "order": ["main"]
+}

@@ -1,0 +1,22 @@
+{%- comment -%}
+  Site-wide font: Outfit (the same font files the Wix site uses, stored in Content > Files).
+  Loads after the older "June global style" section and replaces its Figtree font everywhere
+  outside the Wix replica sections (cart drawer, search, account pages, apps).
+{%- endcomment -%}
+<style>
+  @font-face{font-family:'Outfit';font-weight:300;font-style:normal;font-display:swap;src:url('{{ 'wx-font-e.woff2' | file_url }}') format('woff2')}
+  @font-face{font-family:'Outfit';font-weight:400;font-style:normal;font-display:swap;src:url('{{ 'wx-font-b.woff2' | file_url }}') format('woff2')}
+  @font-face{font-family:'Outfit';font-weight:500;font-style:normal;font-display:swap;src:url('{{ 'wx-font-a.woff2' | file_url }}') format('woff2')}
+  @font-face{font-family:'Outfit';font-weight:600;font-style:normal;font-display:swap;src:url('{{ 'wx-font-d.woff2' | file_url }}') format('woff2')}
+  :root:root{
+    --june-font:'Outfit',Arial,sans-serif;
+    --font-body--family:'Outfit',Arial,sans-serif !important;
+    --font-subheading--family:'Outfit',Arial,sans-serif !important;
+    --font-heading--family:'Outfit',Arial,sans-serif !important;
+    --font-accent--family:'Outfit',Arial,sans-serif !important;
+  }
+  html body, html body *:not(svg):not(path):not(circle):not(rect){font-family:'Outfit',Arial,sans-serif !important}
+</style>
+{% schema %}
+{ "name": "Site font (Outfit)", "settings": [], "presets": [{ "name": "Site font (Outfit)" }] }
+{% endschema %}

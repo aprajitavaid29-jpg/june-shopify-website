@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": { "type": "wx-careers", "settings": {} }
+  },
+  "order": ["main"]
+}

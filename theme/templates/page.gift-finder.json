@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": { "type": "wx-gift-finder", "settings": {} }
+  },
+  "order": ["main"]
+}

@@ -1,0 +1,38 @@
+{%- comment -%}
+  Wix replica: fonts and shared styles copied from shop-june.com (Wix).
+  Fonts are the site's own uploaded Wix fonts (Content > Files, wx-font-*.woff2).
+  Sizes scale with the screen like Wix: 1u = 1px on a 375px phone, or 1px on a 1440px desktop.
+{%- endcomment -%}
+{%- capture wxcss -%}
+  @font-face{font-family:'wxA';src:url('{{ 'wx-font-a.woff2' | file_url }}') format('woff2');font-display:swap}
+  @font-face{font-family:'wxB';src:url('{{ 'wx-font-b.woff2' | file_url }}') format('woff2');font-display:swap}
+  @font-face{font-family:'wxC';src:url('{{ 'wx-font-c.woff2' | file_url }}') format('woff2');font-display:swap}
+  @font-face{font-family:'wxD';src:url('{{ 'wx-font-d.woff2' | file_url }}') format('woff2');font-display:swap}
+  @font-face{font-family:'wxE';src:url('{{ 'wx-font-e.woff2' | file_url }}') format('woff2');font-display:swap}
+  @font-face{font-family:'wxF';src:url('{{ 'wx-font-f.woff2' | file_url }}') format('woff2');font-display:swap}
+  @font-face{font-family:'wxG';src:url('{{ 'wx-font-g.woff2' | file_url }}') format('woff2');font-display:swap}
+  @font-face{font-family:'wxH';src:url('{{ 'wx-font-h.woff2' | file_url }}') format('woff2');font-display:swap}
+  @font-face{font-family:'wxI';src:url('{{ 'wx-font-i.woff2' | file_url }}') format('woff2');font-display:swap}
+  :root{--u:calc(100vw / 375);--wx-brown:#996E5C;--wx-brown-2:#A9806F;--wx-cream:#F7F5F1;--wx-grey:#6B6B6B;--wx-head:u(55)}
+  @media (min-width:750px){:root{--u:calc(100vw / 1440);--wx-head:u(68)}}
+  body .wx, body .wx :where(*:not(svg,path,circle,rect,g)){font-family:'wxC',Arial,sans-serif !important;letter-spacing:normal !important;text-transform:none !important;box-sizing:border-box;font-weight:400}
+  body .wx :where(span){font-family:inherit !important;letter-spacing:inherit !important;text-transform:inherit !important}
+  html:root body .wx :where(h1,h2,h3,h4,strong,b){font-weight:400 !important}
+  body .wx :where(a){text-decoration:none !important;color:inherit}
+  body .wx :where(img){display:block;max-width:none}
+  body .wx :where(picture){display:block;width:100%;height:100%}
+  body .wx :where(h1,h2,h3,p,figure,ul){margin:0;padding:0}
+  body .wx :where(.wxA){font-family:'wxA',Arial,sans-serif !important}
+  body .wx :where(.wxB){font-family:'wxB',Arial,sans-serif !important}
+  body .wx :where(.wxC){font-family:'wxC',Arial,sans-serif !important}
+  body .wx :where(.wxD){font-family:'wxD',Arial,sans-serif !important}
+  body .wx :where(.wxE){font-family:'wxE',Arial,sans-serif !important}
+  body .wx :where(.wxF){font-family:'wxF',Arial,sans-serif !important}
+  body .wx :where(.wxG){font-family:'wxG',Arial,sans-serif !important}
+  body .wx :where(.wxH){font-family:'wxH',Arial,sans-serif !important}
+  body .wx :where(.wxI){font-family:'wxI',Arial,sans-serif !important}
+  body .wx :where(.wx-up){text-transform:uppercase !important}
+  body .wx .wx-arrowlink{display:inline-flex !important;align-items:center;gap:u(12);font-family:'wxB',Arial,sans-serif !important;font-size:u(12) !important;letter-spacing:u(.6) !important;line-height:1.25;color:var(--wx-brown)}
+  body .wx .wx-arrowlink svg{width:u(16);height:u(10);flex:0 0 auto}
+  @media (min-width:750px){body .wx .wx-arrowlink{font-size:u(13) !important;letter-spacing:u(.65) !important}}
+{%- endcapture -%}<style>{{ wxcss | replace: 'u(', 'calc(var(--u)*' }}</style>

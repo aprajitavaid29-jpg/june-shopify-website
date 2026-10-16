@@ -1,0 +1,222 @@
+{%- comment -%}
+  Wix replica: About Us (shop-june.com/about-us), measured at 1440px desktop and 375px phone.
+  Images live in Content > Files as wx-img-<wix id>.jpg.
+{%- endcomment -%}
+{%- render 'wx-base' -%}
+{%- capture arrow -%}<svg viewBox="0 0 22 10" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M0 5h20.5M16.5 1l4 4-4 4"/></svg>{%- endcapture -%}
+{%- assign world_d = 'a60a645e:524,c1b0869f:565,36086162:524,7d3b5da0:565,cf4df10d:565,1b81cf50:524,18277f99:565,c8f3c8ef:565,8e8e0cb6:524,f11e2555:524' | split: ',' -%}
+{%- assign world_m = 'a60a645e:245,c1b0869f:264,8e8e0cb6:245,18277f99:264,7d3b5da0:264,5f8dafd6:264' | split: ',' -%}
+{%- assign textures = '35c3884b,9a1cb5b5,42de4a43,ff664b18,251fa3e4,5e66b9b6' | split: ',' -%}
+{%- assign women = 'c47d8184|49% 32%|Allison, Australia;582c30af|77% 25%|Anna, Spain;0d6e4205|49% 32%|Paula, Australia;c1f0b75f|49% 53%|Emma, Australia;97e5bdf0|45% 24%|Jillian, Greece;cf5ba7ca|61% 31%|Lorena, Spain;08524c04|44% 17%|Sophia, Australia;6c7de1d5|46% 71%|Elisa, Germany;e1fd84f1|48% 39%|Jade, France;e2dde2d5|45% 25%|Anika, Australia' | split: ';' -%}
+
+<div class="wx wxab">
+  <div class="wxab__hero">
+    <picture>
+      <source media="(min-width: 750px)" srcset="{{ 'wx-img-baadd204.jpg' | file_img_url: '2400x' }}">
+      <img src="{{ 'wx-img-fc854024.jpg' | file_img_url: '900x' }}" alt="June, beyond" fetchpriority="high">
+    </picture>
+  </div>
+
+  <h1 class="wxab__tag wxB">Designed to be souvenirs of your journey.</h1>
+
+  <section class="wxab__row wxab__row--1">
+    <div class="wxab__media"><img src="{{ 'wx-img-24eb0f21.jpg' | file_img_url: '1400x' }}" alt="Everyday Essential Gold Jewellery by House of June" loading="lazy"></div>
+    <div class="wxab__copy">
+      <h2 class="wxA">THE SPARK</h2>
+      <p>Jewellery in India has never just been an accessory. It was how love got passed across generations. For centuries, fine jewellery was where families built their heirlooms, because they were crafted with care and lasted forever.</p>
+      <p>Even though that significance never left, the habit disappeared. The jewellery industry didn't evolve to meet a new generation and the way they lived. So they found themselves reaching for affordable alternatives that offered variety and novelty but no real value.</p>
+      <p>The pieces we wear every day become an important part of our lives. June was built for a new generation ready to build their own collection of forever pieces.</p>
+      <p class="wxab__gap">Modern heirlooms. Made in India. Built for the world.</p>
+    </div>
+  </section>
+
+  <section class="wxab__row wxab__row--2">
+    <div class="wxab__copy">
+      <h2 class="wxA">BUILT ON LEGACY</h2>
+      <p>June is rooted in over three decades of jewellery manufacturing. My family built their lives around fine jewellery.</p>
+      <p class="wxab__gap">Over the years, my family worked behind the scenes creating jewellery for brands and retailers across the world. It gave me a deep appreciation for the craftsmanship, expertise, and care that goes into making fine jewellery well. It also showed me the gap between the jewellery industry and the way a new generation wanted to wear jewellery.</p>
+      <p class="wxab__gap">June was born from bringing those two worlds together. The craftsmanship and permanence of fine jewellery, reimagined for modern life.</p>
+    </div>
+    <div class="wxab__media"><img src="{{ 'wx-img-dd64ff85.jpg' | file_img_url: '1400x' }}" alt="Gold Jewellery for Gifting by House of June" loading="lazy" style="object-position:54% 68%"></div>
+  </section>
+
+  <section class="wxab__row wxab__row--3">
+    <div class="wxab__media">
+      <video autoplay muted loop playsinline preload="metadata" poster="{{ 'wx-img-454d0dde.jpg' | file_img_url: '1400x' }}"{% if section.settings.video_url != blank %} src="{{ section.settings.video_url }}"{% endif %}></video>
+    </div>
+    <div class="wxab__copy">
+      <h2 class="wxA">MADE FOR MODERN LIFE</h2>
+      <p>When we set out to build June, we weren't interested in creating another jewellery brand. We wanted to rethink the way fine jewellery itself was made. June Gold Forming was created to bridge that gap.</p>
+      <p class="wxab__gap">But material innovation was only half the story. The way we live has changed. We travel more, move more, express ourselves differently. We wanted June to reflect that reality. Pieces that feel effortless enough for everyday wear, versatile enough to move between different parts of life, and meaningful enough to stay with you for years.</p>
+      <a class="wxab__link wxB" href="/pages/june-gold-forming">June Gold Forming {{ arrow }}</a>
+    </div>
+  </section>
+
+  <section class="wxab__quote">
+    <h2 class="wxB">"I want the new generation to fall in love with gold again. Not just store it, invest in it, or gift it. But to love it, live in it."</h2>
+    <p class="wxB">— Aman Kulthia, Founder, CEO</p>
+  </section>
+
+  <p class="wxab__label wxab__label--world wxB">Into The World of June {{ arrow }}</p>
+  <div class="wxab__strip wxab__strip--d" data-wxab-strip>
+    {%- for w in world_d -%}{%- assign p = w | split: ':' -%}{%- assign f = 'wx-img-' | append: p[0] | append: '.jpg' -%}
+      <img src="{{ f | file_img_url: '1200x' }}" alt="Into the World of June" loading="lazy" style="--w:{{ p[1] }}">
+    {%- endfor -%}
+  </div>
+  <div class="wxab__strip wxab__strip--m">
+    {%- for w in world_m -%}{%- assign p = w | split: ':' -%}{%- assign f = 'wx-img-' | append: p[0] | append: '.jpg' -%}
+      <img src="{{ f | file_img_url: '700x' }}" alt="Into the World of June" loading="lazy" style="--w:{{ p[1] }}">
+    {%- endfor -%}
+  </div>
+
+  <div class="wxab__text wxab__text--midas">
+    <p>"Growing up, I was always fascinated by the story of the Midas touch. The ability to turn the most mundane things around us into permanence with a touch of gold seemed like a kind of magic worth believing in.</p>
+    <p>June was shaped around the same design ideology. Shapes and forms and textures that are always around us, captured in the most unexpected ways. Our designs are rarely born from a sketch alone. They emerge through folding paper, shaping clay, collecting found objects, studying natural forms, preserving textures, almost like collecting souvenirs from our own lives and adding permanence to them. Every piece is an interpretation of something observed, collected, or remembered.</p>
+    <p>Because while everything around us can feel fleeting, there is always a souvenir worth holding on to."</p>
+    <p>- Aprajita Vaid, Co-founder &amp; Creative Director</p>
+  </div>
+
+  <p class="wxab__label wxab__label--tex wxB">Textures of June {{ arrow }}</p>
+  <div class="wxab__slider wxab__slider--tex" data-wxab-slider>
+    <div class="wxab__track">
+      {%- for t in textures -%}{%- assign f = 'wx-img-' | append: t | append: '.jpg' -%}
+        <figure><img src="{{ f | file_img_url: '900x' }}" alt="Textures of June" loading="lazy"></figure>
+      {%- endfor -%}
+    </div>
+    <button type="button" class="wxab__next" aria-label="Next item" data-next><svg viewBox="0 0 10 18" fill="none" stroke="currentColor" stroke-width="1.2"><path d="m1 1 8 8-8 8"/></svg></button>
+  </div>
+
+  <div class="wxab__text wxab__text--iso">
+    <p>June was never meant to be built in isolation.</p>
+    <p>From the beginning, the goal was to build it with the people it was made for. Our first collection took shape through conversations with women from around the world, they didn't just inspire the collection. They are the reason it looks the way it does. June was built for women who move through the world on their own terms and don't wait for an occasion to show up as themselves.</p>
+    <p>This space is theirs. Their stories, their way of wearing June, their version of what it means. Because June only becomes what it's meant to be when it's actually lived in.</p>
+  </div>
+
+  <p class="wxab__label wxab__label--women wxB">Women of June {{ arrow }}</p>
+  <div class="wxab__slider wxab__slider--women" data-wxab-slider>
+    <div class="wxab__track">
+      {%- for w in women -%}{%- assign p = w | split: '|' -%}{%- assign f = 'wx-img-' | append: p[0] | append: '.jpg' -%}
+        <figure><img src="{{ f | file_img_url: '900x' }}" alt="{{ p[2] }}" loading="lazy" style="object-position:{{ p[1] }}"><figcaption class="wxA">{{ p[2] }}</figcaption></figure>
+      {%- endfor -%}
+    </div>
+    <button type="button" class="wxab__next" aria-label="Next item" data-next><svg viewBox="0 0 10 18" fill="none" stroke="currentColor" stroke-width="1.2"><path d="m1 1 8 8-8 8"/></svg></button>
+  </div>
+</div>
+
+{%- capture wxcss -%}
+  html:root body .wxab{color:var(--wx-brown-2);padding-bottom:u(64)}
+  html:root body .wxab :where(img,video){display:block;width:100%;height:100%;object-fit:cover}
+  html:root body .wxab__hero{height:u(424);overflow:hidden}
+  html:root body .wxab__hero img{height:u(448)}
+  html:root body .wxab__tag{width:u(309);margin:u(28) auto 0;text-align:center;font-size:u(13.626) !important;line-height:u(23.164);letter-spacing:u(4.633) !important;text-transform:uppercase !important;color:var(--wx-brown-2)}
+  html:root body .wxab__row{display:flex;flex-direction:column}
+  html:root body .wxab__copy{text-align:center}
+  html:root body .wxab__copy h2{font-size:u(14.423) !important;line-height:u(28.846);letter-spacing:u(.288) !important;color:var(--wx-brown-2)}
+  html:root body .wxab__copy p{font-size:u(10.577) !important;line-height:u(21.154);letter-spacing:u(.2115) !important;color:var(--wx-brown-2)}
+  html:root body .wxab__copy p.wxab__gap{margin-top:u(21.154)}
+  html:root body .wxab__row--1 .wxab__copy{order:-1;width:u(278);margin:u(64) auto 0}
+  html:root body .wxab__row--1 h2{margin-bottom:u(7)}
+  html:root body .wxab__row--1 .wxab__media{margin:u(33) 0 0 u(1);width:u(374);height:u(403)}
+  html:root body .wxab__row--2 .wxab__copy{width:u(254);margin:u(45) auto 0}
+  html:root body .wxab__row--2 h2{margin-bottom:u(17)}
+  html:root body .wxab__row--2 .wxab__media{margin:u(29) 0 0 u(2);width:u(373);height:u(441)}
+  html:root body .wxab__row--3 .wxab__copy{order:-1;width:u(261);margin:u(47) auto 0}
+  html:root body .wxab__row--3 h2{margin-bottom:u(15)}
+  html:root body .wxab__row--3 .wxab__copy p.wxab__gap{margin-top:u(20)}
+  html:root body .wxab__row--3 .wxab__media{margin:u(66) 0 0 u(1);width:u(372);height:u(345)}
+  html:root body .wxab__link{display:inline-flex !important;align-items:center;gap:u(10);margin-top:u(19);font-size:u(12) !important;letter-spacing:u(.6) !important;line-height:u(15);color:var(--wx-brown-2)}
+  html:root body .wxab__link svg,html:root body .wxab__label svg{width:u(14);height:u(8);flex:0 0 auto}
+  html:root body .wxab__quote{width:u(266);margin:u(106) auto 0;text-align:center}
+  html:root body .wxab__quote h2{font-size:u(13.4615) !important;line-height:u(20.192);letter-spacing:u(.269) !important;color:var(--wx-brown-2)}
+  html:root body .wxab__quote p{margin-top:u(11);font-size:u(9.615) !important;line-height:u(14.423);letter-spacing:u(.192) !important}
+  html:root body .wxab__label{display:flex !important;align-items:center;justify-content:center;gap:u(10);font-size:u(12) !important;letter-spacing:u(.6) !important;line-height:u(15);color:var(--wx-brown-2)}
+  html:root body .wxab__label--world{margin-top:u(74)}
+  html:root body .wxab__strip{display:flex;gap:u(13);overflow-x:auto;scrollbar-width:none;margin-top:u(22)}
+  html:root body .wxab__strip::-webkit-scrollbar{display:none}
+  html:root body .wxab__strip img{flex:0 0 auto;width:calc(var(--u) * var(--w));height:u(328)}
+  html:root body .wxab__strip--d{display:none}
+  html:root body .wxab__text{margin:0 auto;text-align:center}
+  html:root body .wxab__text p{font-size:u(10.577) !important;line-height:u(21.154);letter-spacing:u(.529) !important;color:var(--wx-brown-2)}
+  html:root body .wxab__text p + p{margin-top:u(21.154)}
+  html:root body .wxab__text--midas{width:u(292);margin-top:u(46)}
+  html:root body .wxab__text--iso{width:u(270);margin-top:u(51)}
+  html:root body .wxab__label--tex{margin-top:u(61)}
+  html:root body .wxab__label--women{margin-top:u(59)}
+  html:root body .wxab__slider{position:relative}
+  html:root body .wxab__slider--tex{margin-top:u(31)}
+  html:root body .wxab__slider--women{margin-top:u(45)}
+  html:root body .wxab__track{display:flex;gap:u(13);overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none}
+  html:root body .wxab__track::-webkit-scrollbar{display:none}
+  html:root body .wxab__track figure{position:relative;flex:0 0 auto;width:u(243);height:u(324);margin:0;scroll-snap-align:start}
+  html:root body .wxab__track figcaption{position:absolute;left:u(30);bottom:u(30);font-size:u(15) !important;line-height:u(19);font-weight:700 !important;color:#fff}
+  html:root body .wxab__next{display:none}
+  @media (min-width:750px){
+    html:root body .wxab{padding-bottom:u(13)}
+    html:root body .wxab__hero{height:u(789)}
+    html:root body .wxab__hero img{height:100%;object-position:51% 64%}
+    html:root body .wxab__tag{width:u(1080);margin-top:u(79);font-size:u(25.875) !important;line-height:u(38.812);letter-spacing:u(8.797) !important}
+    html:root body .wxab__row{flex-direction:row;align-items:flex-start}
+    html:root body .wxab__copy{text-align:left}
+    html:root body .wxab__copy h2{font-size:u(22.5) !important;line-height:u(45);letter-spacing:u(.45) !important}
+    html:root body .wxab__copy p{font-size:u(15.937) !important;line-height:u(31.873);letter-spacing:u(.3187) !important}
+    html:root body .wxab__copy p.wxab__gap,html:root body .wxab__row--3 .wxab__copy p.wxab__gap{margin-top:u(31.873)}
+    html:root body .wxab__row--1{margin-top:u(107);padding-left:u(74)}
+    html:root body .wxab__row--1 .wxab__media{order:0;margin:0;width:u(646);height:u(626)}
+    html:root body .wxab__row--1 .wxab__copy{order:1;width:u(528);margin:0 0 0 u(96);padding-top:u(78)}
+    html:root body .wxab__row--1 h2{margin-bottom:u(14)}
+    html:root body .wxab__row--2{margin-top:u(45);padding-left:u(117)}
+    html:root body .wxab__row--2 .wxab__copy{width:u(487);margin:0;padding-top:u(76)}
+    html:root body .wxab__row--2 h2{margin-bottom:u(14)}
+    html:root body .wxab__row--2 .wxab__media{margin:0 0 0 u(119);width:u(672);height:u(628)}
+    html:root body .wxab__row--3{margin-top:u(41);padding-left:u(48)}
+    html:root body .wxab__row--3 .wxab__media{order:0;margin:0;width:u(670);height:u(620)}
+    html:root body .wxab__row--3 .wxab__copy{order:1;width:u(502);margin:0 0 0 u(115);padding-top:u(70)}
+    html:root body .wxab__row--3 h2{margin-bottom:u(15)}
+    html:root body .wxab__link{margin:u(41) 0 0 u(5);font-size:u(14) !important;letter-spacing:u(.7) !important;line-height:u(18);gap:u(12)}
+    html:root body .wxab__link svg,html:root body .wxab__label svg{width:u(16);height:u(9)}
+    html:root body .wxab__quote{width:u(904);margin-top:u(119)}
+    html:root body .wxab__quote h2{font-size:u(24.566) !important;line-height:u(36.848);letter-spacing:u(.491) !important}
+    html:root body .wxab__quote p{margin-top:u(20);font-size:u(18) !important;line-height:u(27);letter-spacing:u(.36) !important}
+    html:root body .wxab__label{justify-content:flex-start;gap:u(12);font-size:u(14) !important;letter-spacing:u(.7) !important;line-height:u(18)}
+    html:root body .wxab__label--world{margin:u(126) 0 0 u(63)}
+    html:root body .wxab__strip--m{display:none}
+    html:root body .wxab__strip--d{display:flex;margin-top:u(49)}
+    html:root body .wxab__strip img{height:u(702)}
+    html:root body .wxab__text p{font-size:u(15.75) !important;line-height:u(26.775);letter-spacing:u(.63) !important}
+    html:root body .wxab__text p + p{margin-top:u(26.775)}
+    html:root body .wxab__text--midas{width:u(949);margin-top:u(97)}
+    html:root body .wxab__text--iso{width:u(936);margin-top:u(97)}
+    html:root body .wxab__label--tex{margin:u(282) 0 0 u(77)}
+    html:root body .wxab__label--women{margin:u(86) 0 0 u(84)}
+    html:root body .wxab__slider--tex{margin-top:u(58)}
+    html:root body .wxab__slider--women{margin-top:u(42)}
+    html:root body .wxab__track{gap:u(13);margin:0 u(68)}
+    html:root body .wxab__track figure{width:u(421);height:u(562)}
+    html:root body .wxab__track figcaption{font-size:u(13) !important;line-height:u(16);font-weight:400 !important}
+    html:root body .wxab__next{display:flex;position:absolute;left:u(1300);top:u(256);width:u(50);height:u(50);align-items:center;justify-content:center;padding:0;border:0;border-radius:50%;background:#fff;color:#000;cursor:pointer;box-shadow:0 0 u(4) rgba(0,0,0,.08)}
+    html:root body .wxab__next svg{width:u(9);height:u(16)}
+  }
+{%- endcapture -%}<style>{{ wxcss | replace: 'u(', 'calc(var(--u)*' }}</style>
+<script>
+  (function(){
+    document.querySelectorAll('.wxab [data-wxab-slider]').forEach(function(s){
+      var t=s.querySelector('.wxab__track'),b=s.querySelector('[data-next]');if(!t||!b)return;
+      b.addEventListener('click',function(){
+        var f=t.querySelector('figure'),step=f.getBoundingClientRect().width+parseFloat(getComputedStyle(t).columnGap||0);
+        if(t.scrollLeft+t.clientWidth>=t.scrollWidth-4){t.scrollTo({left:0});}else{t.scrollBy({left:step});}
+      });
+    });
+    /* the Wix strip opens part-way along, with the first picture cut at the left edge */
+    var st=document.querySelector('.wxab [data-wxab-strip]');
+    if(st&&window.matchMedia('(min-width:750px)').matches){st.style.scrollBehavior='auto';st.scrollLeft=st.scrollWidth*0.115;}
+  })();
+</script>
+{% schema %}
+{
+  "name": "Wix about us",
+  "settings": [
+    { "type": "text", "id": "video_url", "label": "Made for modern life video URL" }
+  ],
+  "presets": [{ "name": "Wix about us" }]
+}
+{% endschema %}

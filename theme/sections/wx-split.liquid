@@ -1,0 +1,202 @@
+{%- comment -%}
+  Wix replica: the "two portraits" pages on shop-june.com, measured at 1440px desktop and 375px phone.
+    consult  -> /consultation   (Book a Consultation)
+    contact  -> /consultation-1 (Contact Us)
+    returns  -> /consultation-3 (Return Form, sent to the store as a contact form)
+{%- endcomment -%}
+{%- render 'wx-base' -%}
+{%- assign v = section.settings.variant -%}
+{%- capture arrow -%}<svg viewBox="0 0 22 10" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M0 5h20.5M16.5 1l4 4-4 4"/></svg>{%- endcapture -%}
+{%- capture card_arrow -%}<svg class="wxsp__carrow" viewBox="20 86 160 28" aria-hidden="true"><path fill="currentColor" d="M164.965 114L180 100l-15.035-14-2.8 2.941 9.275 8.636H20v4.846h151.44l-9.275 8.636z"/></svg>{%- endcapture -%}
+
+<div class="wx wxsp wxsp--{{ v }}">
+  <section class="wxsp__top">
+    <div class="wxsp__img wxsp__img--l"><img src="{{ 'wx-img-d196983e.jpg' | file_img_url: '1200x' }}" alt="" fetchpriority="high"></div>
+    <div class="wxsp__img wxsp__img--r"><img src="{{ 'wx-img-786e938d.jpg' | file_img_url: '1200x' }}" alt=""></div>
+    <div class="wxsp__img wxsp__img--m"><img src="{{ 'wx-img-e1a8f696.jpg' | file_img_url: '900x' }}" alt="" fetchpriority="high"></div>
+
+    {%- case v -%}
+      {%- when 'consult' -%}
+        <div class="wxsp__mid">
+          <h1 class="wxsp__ctitle wxA">Book a Consultation</h1>
+          <div class="wxsp__ctext wxE">
+            <p>Fine jewellery is personal.</p>
+            <p>Your experience should be too.</p>
+            <p>&#8203;</p>
+            <p>Book a complimentary one-on-one consultation to learn more about our collections, materials, and the craftsmanship behind every June piece.</p>
+          </div>
+          <a class="wxsp__call wxB" href="{{ section.settings.call_url }}"{% if section.settings.call_url contains 'http' %} target="_blank" rel="noopener"{% endif %}>Schedule The Call {{ arrow }}</a>
+        </div>
+      {%- when 'contact' -%}
+        <div class="wxsp__mid">
+          <div class="wxsp__info wxE">
+            <p>Whether you have a question about a piece, need help choosing a gift, or simply want to say hello, we'd love to hear from you. Our team is here to help and will get back to you as soon as possible.</p>
+            <p>&#8203;</p>
+            <p><span class="wxA">Email Support</span><br><a href="mailto:care@houseofjune.co">care@houseofjune.co</a></p>
+            <p>&#8203;</p>
+            <p><span class="wxA">WhatsApp</span><br><a href="https://wa.me/919315573171" target="_blank" rel="noopener">+91 9315573171</a></p>
+            <p>&#8203;</p>
+            <p><span class="wxA">Working Hours</span><br>Monday – Saturday<br>11:00 AM – 6:00 PM (IST)</p>
+            <p>&#8203;</p>
+            <p><span class="wxA">Registered Office</span><br>House of June Pvt. Ltd.<br>C-72, south ex, South Delhi, 110049, India</p>
+          </div>
+        </div>
+      {%- when 'returns' -%}
+        <div class="wxsp__form">
+          {%- form 'contact', id: 'wx-return-form' -%}
+            <input type="hidden" name="contact[form]" value="Return Form">
+            <h1 class="wxsp__ftitle wxA">RETURN FORM</h1>
+            {%- if form.posted_successfully? -%}
+              <p class="wxsp__ok wxB">Thank you. Our team will review your request and get back to you within 24–48 hours.</p>
+            {%- endif -%}
+            {%- if form.errors -%}<p class="wxsp__err wxB">{{ form.errors | default_errors }}</p>{%- endif -%}
+            <label class="wxB" for="wxr-order">Order Number*</label>
+            <input id="wxr-order" class="wxB" type="text" name="contact[Order Number]" required>
+            <label class="wxB" for="wxr-name">Full Name</label>
+            <input id="wxr-name" class="wxB" type="text" name="contact[name]" autocomplete="name">
+            <label class="wxB" for="wxr-phone">Phone*</label>
+            <input id="wxr-phone" class="wxB" type="tel" name="contact[phone]" autocomplete="tel" required>
+            <label class="wxB" for="wxr-bank">Bank Account Number</label>
+            <input id="wxr-bank" class="wxB" type="text" name="contact[Bank Account Number]">
+            <label class="wxB" for="wxr-ifsc">IFSC Code</label>
+            <input id="wxr-ifsc" class="wxB" type="text" name="contact[IFSC Code]">
+            <label class="wxB" for="wxr-reason">Reason for Return</label>
+            <div class="wxsp__select">
+              <select id="wxr-reason" class="wxB" name="contact[Reason for Return]">
+                <option value="" selected disabled hidden></option>
+                <option>Don't like the fit</option>
+                <option>Changed my mind</option>
+                <option>Don't like the quality</option>
+                <option>Don't need the product anymore</option>
+              </select>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.255 8.182l.707.707-6.367 6.365-.707.707-6.364-6.364.707-.707 5.657 5.657z"/></svg>
+            </div>
+            <input type="hidden" name="contact[email]" value="{{ shop.email }}">
+            <button type="submit" class="wxsp__submit wxB">Submit</button>
+          {%- endform -%}
+        </div>
+    {%- endcase -%}
+  </section>
+
+  {%- if v == 'returns' -%}
+    <section class="wxsp__cards">
+      <div class="wxsp__card" style="--hd:454;--hm:559">
+        {{ card_arrow }}<h2 class="wxD">Returns</h2>
+        <div class="wxsp__ctxt wxE">
+          <p>You may request a return within 7 days of receiving your order.</p>
+          <p>To be eligible for a return, a piece must be unused, unworn, in its original condition, and accompanied by its original packaging, Certificate of Material Authenticity and Composition, and proof of purchase.</p>
+          <p>Customised, engraved, resized, altered, or made-to-order pieces are not eligible for return unless received in damaged or defective condition.</p>
+        </div>
+        <span class="wxsp__num wxD">1</span>
+      </div>
+      <div class="wxsp__card" style="--hd:454;--hm:533">
+        {{ card_arrow }}<h2 class="wxD">Initiating a Return</h2>
+        <div class="wxsp__ctxt wxE">
+          <p>To initiate a return, you can fill the form above or drop an email at&nbsp;<a href="mailto:hello@houseofjune.co">hello@houseofjune.co</a> with your order number and reason for return. Our team will review your request and share the applicable next steps.</p>
+          <p>Returned products are subject to inspection, quality checks, and authenticity verification upon receipt. June reserves the right to refuse returns that do not meet the eligibility requirements.</p>
+        </div>
+        <span class="wxsp__num wxD">2</span>
+      </div>
+      <div class="wxsp__card" style="--hd:377;--hm:354">
+        {{ card_arrow }}<h2 class="wxD">Non-Refundable Charges</h2>
+        <div class="wxsp__ctxt wxE">
+          <p>Unless required otherwise by applicable law, shipping charges, duties, taxes, gift wrapping charges, customisation charges, engraving charges, and similar service fees are non-refundable.</p>
+        </div>
+        <span class="wxsp__num wxD">3</span>
+      </div>
+      <div class="wxsp__card" style="--hd:402;--hm:481">
+        {{ card_arrow }}<h2 class="wxD">Damaged, Defective, or Incorrect Products</h2>
+        <div class="wxsp__ctxt wxE">
+          <p>If your order is received damaged, defective, or incorrect, please contact us promptly at <a href="mailto:hello@houseofjune.co">hello@houseofjune.co</a> with your order details and clear photographs of the product and packaging. Our team will assess the matter and arrange an appropriate resolution, where eligible.</p>
+        </div>
+        <span class="wxsp__num wxD">4</span>
+      </div>
+    </section>
+  {%- endif -%}
+
+  <div class="wxsp__band"><p class="wxD">fine jewellery made to move with you</p></div>
+</div>
+
+{%- capture wxcss -%}
+  html:root body .wxsp{--c:#996E5C;color:var(--c)}
+  html:root body .wxsp img{width:100%;height:100%;object-fit:cover}
+  html:root body .wxsp__top{position:relative;background:#FFFDFA}
+  html:root body .wxsp__img--l,html:root body .wxsp__img--r{display:none}
+  html:root body .wxsp__img--m{height:u(218)}
+  html:root body .wxsp--consult .wxsp__top{height:u(749)}
+  html:root body .wxsp--contact .wxsp__top{height:u(904)}
+  html:root body .wxsp--returns .wxsp__top{height:u(1127);background:#fff}
+  html:root body .wxsp__mid{text-align:center}
+  html:root body .wxsp__ctitle{font-family:'wxD',Arial,sans-serif !important;width:u(295);margin:u(128) auto 0;font-size:u(15.385) !important;line-height:u(26.923);letter-spacing:u(4.615) !important;text-transform:uppercase !important;color:var(--c)}
+  html:root body .wxsp__ctext{width:u(295);margin:u(20) auto 0}
+  html:root body .wxsp__ctext p,html:root body .wxsp__info p{font-size:u(14) !important;line-height:u(22.4);color:var(--c)}
+  html:root body .wxsp__call{display:inline-flex !important;align-items:center;gap:u(10);margin-top:u(42);font-size:u(12) !important;letter-spacing:u(.6) !important;line-height:u(15);color:var(--c)}
+  html:root body .wxsp__call svg{width:u(14);height:u(8)}
+  html:root body .wxsp__info{width:u(290);margin:u(37) auto 0}
+  html:root body .wxsp__info a{color:inherit}
+  html:root body .wxsp__form{position:relative;width:u(360);margin:u(10) 0 0 u(8);padding:u(19) u(24) 0;background:#fff;color:#000}
+  html:root body .wxsp__ftitle{font-size:u(24) !important;line-height:u(36);color:#000}
+  html:root body .wxsp__form label{display:block;margin-top:u(12);font-size:u(14) !important;line-height:u(19.6);color:#000}
+  html:root body .wxsp__ftitle + label,html:root body .wxsp__ok + label,html:root body .wxsp__err + label{margin-top:u(9)}
+  html:root body .wxsp__form input:not([type=hidden]),html:root body .wxsp__form select{display:block;width:100%;height:u(42);margin-top:u(8);padding:0 u(12);border:1px solid rgba(0,0,0,.6);border-radius:0;background:#fff;font-size:u(16) !important;color:#000;-webkit-appearance:none;appearance:none}
+  html:root body .wxsp__select{position:relative}
+  html:root body .wxsp__select svg{position:absolute;right:u(12);top:50%;width:u(24);height:u(24);margin-top:u(-8);pointer-events:none;color:#000}
+  html:root body .wxsp__submit{display:block;width:100%;height:u(41);margin-top:u(12);border:0;border-radius:0;background:#996E5C;color:#fff;font-size:u(16) !important;cursor:pointer}
+  html:root body .wxsp__ok,html:root body .wxsp__err{margin-top:u(9);font-size:u(14) !important;line-height:u(19.6);color:var(--c)}
+  html:root body .wxsp__cards{padding:u(28) 0 u(29)}
+  html:root body .wxsp__card{position:relative;width:u(317);height:calc(var(--u) * var(--hm));margin:0 0 u(20) u(29);padding:u(83) u(29) 0;border:1px solid rgba(0,0,0,.25);color:#000}
+  html:root body .wxsp__card:last-child{margin-bottom:0}
+  html:root body .wxsp__carrow{position:absolute;left:u(29);top:u(29);width:u(43);height:u(22);color:var(--c)}
+  html:root body .wxsp__card h2{font-size:u(20) !important;line-height:u(25);color:var(--c)}
+  html:root body .wxsp__ctxt{margin-top:u(16)}
+  html:root body .wxsp__ctxt p{font-size:u(16) !important;line-height:u(25.6);color:#000}
+  html:root body .wxsp__ctxt a{text-decoration:underline !important}
+  html:root body .wxsp__num{position:absolute;right:u(29);bottom:u(29);font-size:u(22.27) !important;line-height:1.25;color:var(--c)}
+  html:root body .wxsp__band{display:flex;align-items:center;justify-content:center;height:u(103);background:rgba(241,240,237,.6)}
+  html:root body .wxsp--contact .wxsp__band{margin-bottom:u(45)}
+  html:root body .wxsp__band p{font-family:'wxD',Arial,sans-serif !important;font-size:u(8.919) !important;line-height:u(13.378);letter-spacing:u(2.23) !important;text-transform:uppercase !important;color:var(--c)}
+  @media (min-width:750px){
+    html:root body .wxsp__top{background:#fff}
+    html:root body .wxsp--consult .wxsp__top,html:root body .wxsp--contact .wxsp__top{height:u(900)}
+    html:root body .wxsp--returns .wxsp__top{height:u(1147)}
+    html:root body .wxsp__img--m{display:none}
+    html:root body .wxsp__img--l,html:root body .wxsp__img--r{display:block;position:absolute;top:u(23);bottom:u(22)}
+    html:root body .wxsp__img--l{left:0;width:u(438)}
+    html:root body .wxsp__img--l img{object-position:63% 50%}
+    html:root body .wxsp__img--r{left:u(991);width:u(449)}
+    html:root body .wxsp__img--r img{object-position:29% 50%}
+    html:root body .wxsp__mid{position:absolute;left:u(438);width:u(553);top:0}
+    html:root body .wxsp__ctitle{font-family:'wxA',Arial,sans-serif !important;width:u(486);margin-top:u(251);font-size:u(27) !important;line-height:u(43.2);letter-spacing:u(8.1) !important}
+    html:root body .wxsp__ctext{width:u(387);margin-top:u(32)}
+    html:root body .wxsp__ctext p,html:root body .wxsp__info p{font-size:u(16) !important;line-height:u(25.6)}
+    html:root body .wxsp__call{margin-top:u(134);font-size:u(16) !important;letter-spacing:0 !important;line-height:u(20);gap:u(12)}
+    html:root body .wxsp__call svg{width:u(16);height:u(9)}
+    html:root body .wxsp__info{width:u(391);margin-top:u(249)}
+    html:root body .wxsp__info p{font-size:u(14) !important;line-height:u(22.4)}
+    html:root body .wxsp__form{position:absolute;left:u(503);top:u(268);width:u(423);margin:0}
+    html:root body .wxsp__cards{display:grid;grid-template-columns:u(661) u(649);column-gap:u(40);row-gap:u(40);align-items:start;padding:u(90) 0 u(46) u(45)}
+    html:root body .wxsp__card{width:auto;height:calc(var(--u) * var(--hd));margin:0;padding:u(87) u(34) 0}
+    html:root body .wxsp__card:nth-child(even){margin-top:u(47)}
+    html:root body .wxsp__carrow{left:u(34);top:u(34)}
+    html:root body .wxsp__card h2{font-size:u(28) !important;line-height:u(35)}
+    html:root body .wxsp__card:nth-child(n+3) h2{white-space:nowrap}
+    html:root body .wxsp__num{right:u(34);bottom:u(34);font-size:u(85.5) !important;line-height:u(108)}
+    html:root body .wxsp__band{height:u(178)}
+    html:root body .wxsp--contact .wxsp__band{margin-bottom:0}
+    html:root body .wxsp__band p{font-family:'wxD',Arial,sans-serif !important;font-size:u(19.125) !important;line-height:u(30.6);letter-spacing:u(5.737) !important}
+  }
+{%- endcapture -%}<style>{{ wxcss | replace: 'u(', 'calc(var(--u)*' }}</style>
+{% schema %}
+{
+  "name": "Wix portrait page",
+  "settings": [
+    { "type": "select", "id": "variant", "label": "Page", "default": "consult", "options": [
+      { "value": "consult", "label": "Book a consultation" },
+      { "value": "contact", "label": "Contact us" },
+      { "value": "returns", "label": "Return form" }
+    ] },
+    { "type": "text", "id": "call_url", "label": "Schedule The Call link", "default": "https://wa.me/918920108880?text=Hi%2C%20I%27d%20like%20to%20book%20a%20consultation" }
+  ],
+  "presets": [{ "name": "Wix portrait page" }]
+}
+{% endschema %}
