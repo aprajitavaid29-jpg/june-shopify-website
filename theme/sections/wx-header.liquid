@@ -1,0 +1,68 @@
+{%- comment -%} Wix replica header (shop-june.com): logo left; menu + search, bag, account right. {%- endcomment -%}
+{%- render 'wx-base' -%}
+{%- assign menu = linklists[section.settings.menu] -%}
+<header class="wx wxhd" data-wxhd>
+  <div class="wxhd__bar">
+    <a class="wxhd__logo" href="{{ routes.root_url }}" aria-label="{{ shop.name }}"><img src="{{ 'wx-logo.png' | file_img_url: '420x' }}" alt="June"></a>
+    <nav class="wxhd__desk" aria-label="Main">
+      {%- for link in menu.links -%}
+        <div class="wxhd__di">
+          <a class="wxH" href="{{ link.url }}">{{ link.title }}</a>
+          {%- if link.links.size > 0 -%}
+            <div class="wxhd__dd">
+              {%- for l2 in link.links -%}
+                <div class="wxhd__ddcol"><a class="wxhd__ddh" href="{{ l2.url }}">{{ l2.title }}</a>
+                  {%- for l3 in l2.links -%}<a class="wxhd__ddl" href="{{ l3.url }}">{{ l3.title }}</a>{%- endfor -%}
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </nav>
+    <div class="wxhd__icons">
+      <a href="{{ routes.search_url }}" aria-label="Search"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="8.4" cy="8.4" r="6.4"/><path d="m13.1 13.1 5.4 5.4"/></svg></a>
+      <a href="{{ routes.cart_url }}" aria-label="Bag" class="wxhd__bag"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4.3 6.6h11.4l-.8 12H5.1l-.8-12Z"/><path d="M7.3 6.6V5a2.7 2.7 0 0 1 5.4 0v1.6"/></svg>{%- if cart.item_count > 0 -%}<span class="wxhd__count">{{ cart.item_count }}</span>{%- endif -%}</a>
+      <a href="{{ routes.account_url }}" aria-label="Account"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="10" cy="6.3" r="3.3"/><path d="M3.6 18.6c.6-3.7 3.2-5.9 6.4-5.9s5.8 2.2 6.4 5.9"/></svg></a>
+      <button type="button" class="wxhd__burger" aria-label="Menu" data-wxhd-open><svg viewBox="0 0 24 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M0 2h24M0 10h24M0 18h24"/></svg></button>
+    </div>
+  </div>
+  <div class="wxhd__drawer" data-wxhd-drawer hidden>
+    <button type="button" class="wxhd__close" aria-label="Close" data-wxhd-close><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.2"><path d="m1 1 18 18M19 1 1 19"/></svg></button>
+    <ul class="wxhd__list">
+      {%- for link in menu.links -%}
+        <li>
+          {%- if link.links.size > 0 -%}
+            <div class="wxhd__row"><a href="{{ link.url }}">{{ link.title }}</a><button type="button" class="wxhd__chev" aria-label="More {{ link.title }} pages" data-wxhd-sub><svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.1"><path d="m1 1.5 5 5 5-5"/></svg></button></div>
+            <ul class="wxhd__sub" hidden>
+              {%- for l2 in link.links -%}
+                <li><a href="{{ l2.url }}">{{ l2.title }}</a>
+                  {%- if l2.links.size > 0 -%}<ul class="wxhd__sub2">{%- for l3 in l2.links -%}<li><a href="{{ l3.url }}">{{ l3.title }}</a></li>{%- endfor -%}</ul>{%- endif -%}
+                </li>
+              {%- endfor -%}
+            </ul>
+          {%- else -%}
+            <a href="{{ link.url }}">{{ link.title }}</a>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</header>
+{%- render 'wx-cart-drawer' -%}
+{%- render 'wx-header-css' -%}
+<script>
+  (function(){var r=document.querySelector('[data-wxhd]');if(!r)return;var d=r.querySelector('[data-wxhd-drawer]');
+    r.querySelector('[data-wxhd-open]').addEventListener('click',function(){d.hidden=false;document.body.classList.add('wx-lock');});
+    r.querySelector('[data-wxhd-close]').addEventListener('click',function(){d.hidden=true;document.body.classList.remove('wx-lock');});
+    r.querySelectorAll('[data-wxhd-sub]').forEach(function(b){b.addEventListener('click',function(){var s=b.closest('li').querySelector('.wxhd__sub');s.hidden=!s.hidden;b.setAttribute('aria-expanded',!s.hidden);});});
+  })();
+</script>
+{% schema %}
+{
+  "name": "Wix header",
+  "settings": [
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
+  ]
+}
+{% endschema %}

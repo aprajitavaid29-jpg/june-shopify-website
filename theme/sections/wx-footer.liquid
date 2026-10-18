@@ -1,0 +1,50 @@
+{%- comment -%} Wix replica footer, measured from shop-june.com (375px phone, 1440px desktop). {%- endcomment -%}
+{%- render 'wx-base' -%}
+<footer class="wx wxft">
+  <div class="wxft__left">
+    <h2 class="wxft__title wxA">Discover the World of June</h2>
+    {%- form 'customer', class: 'wxft__form' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      {%- if form.posted_successfully? -%}<p class="wxft__ok wxE">Thanks for subscribing!</p>{%- endif -%}
+      <div class="wxft__row">
+        <input class="wxE" type="email" name="contact[email]" placeholder="EMAIL ADDRESS" required aria-label="Email">
+        <button type="submit" class="wxC">SUBMIT</button>
+      </div>
+    {%- endform -%}
+    <p class="wxft__note wxE">Receive updates on new arrivals, exclusive drops, store opening, community events, and more!</p>
+    <div class="wxft__social">
+      <a href="https://www.instagram.com/weare.june/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.3" cy="6.7" r="1" fill="#000" stroke="none"/></svg></a>
+      <a href="https://www.linkedin.com/company/we-are-june" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="#000"><path d="M3.4 8.6h3.9V21H3.4zM5.35 2.5a2.25 2.25 0 1 1 0 4.5 2.25 2.25 0 0 1 0-4.5zM9.7 8.6h3.7v1.7h.05c.52-.98 1.8-2 3.7-2 3.95 0 4.7 2.6 4.7 6V21h-3.9v-6c0-1.43-.03-3.27-2-3.27-2 0-2.3 1.56-2.3 3.17V21H9.7z"/></svg></a>
+    </div>
+    {%- assign legal = linklists[section.settings.menu_legal] -%}
+    {%- if legal.links.size > 0 -%}
+      <div class="wxft__legal">{%- for link in legal.links -%}<a class="wxA" href="{{ link.url }}">{{ link.title }}</a>{%- endfor -%}</div>
+    {%- endif -%}
+    <p class="wxft__copy wxA">&copy; {{ 'now' | date: '%Y' }} by House of June</p>
+  </div>
+  <div class="wxft__cols">
+    {%- assign menus = section.settings.menu_1 | append: ',' | append: section.settings.menu_2 | split: ',' -%}
+    {%- for h in menus -%}
+      {%- assign l = linklists[h] -%}
+      <div class="wxft__col">
+        <h3>{{ l.title }}</h3>
+        <ul>{%- for link in l.links -%}<li><a href="{{ link.url }}">{{ link.title }}</a></li>{%- endfor -%}</ul>
+      </div>
+    {%- endfor -%}
+  </div>
+</footer>
+{%- if section.settings.whatsapp != blank -%}
+  <a class="wxwa" href="https://wa.me/{{ section.settings.whatsapp | remove: '+' | remove: ' ' }}" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg viewBox="0 0 32 32" fill="#fff"><path d="M16 3C8.8 3 3 8.7 3 15.8c0 2.5.7 4.9 2 7L3 29l6.4-2c2 1.1 4.3 1.7 6.6 1.7 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.4c-2.1 0-4.1-.6-5.9-1.7l-.4-.2-3.8 1.2 1.2-3.7-.3-.4c-1.2-1.8-1.8-3.8-1.8-5.9C5 10 10 5.2 16 5.2S27 10 27 15.9 22 26.4 16 26.4zm6-7.8c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.2 1.4 3.4c.2.2 2.4 3.6 5.8 5 2.8 1.1 3.4.9 4 .8.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.1-.3-.2-.6-.4z"/></svg></a>
+{%- endif -%}
+{%- render 'wx-footer-css' -%}
+{% schema %}
+{
+  "name": "Wix footer",
+  "settings": [
+    { "type": "link_list", "id": "menu_1", "label": "Column 1", "default": "footer" },
+    { "type": "link_list", "id": "menu_2", "label": "Column 2" },
+    { "type": "link_list", "id": "menu_legal", "label": "Legal links (desktop)" },
+    { "type": "text", "id": "whatsapp", "label": "WhatsApp number (with country code)" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,14 @@
+{
+  "type": "footer",
+  "name": "t:names.footer",
+  "sections": {
+    "wx_footer": { "type": "wx-footer", "settings": { "menu_1": "footer", "menu_2": "get-in-touch", "menu_legal": "legal", "whatsapp": "918920108880" } },
+    "june_tweaks": { "type": "june-tweaks", "settings": {} },
+    "june_layout_sync": { "type": "june-layout-sync", "settings": {} },
+    "june_fixes": { "type": "june-fixes", "settings": {} },
+    "june_product_fixes": { "type": "june-product-fixes", "settings": {} },
+    "june_collection_extras": { "type": "june-collection-extras", "settings": {} },
+    "june_mobile": { "type": "june-mobile", "settings": {} }
+  },
+  "order": ["wx_footer", "june_tweaks", "june_layout_sync", "june_fixes", "june_product_fixes", "june_collection_extras", "june_mobile"]
+}

@@ -1,0 +1,186 @@
+{%- comment -%}
+  Wix replica: slide-in cart drawer (mini bag). Matches the Wix bag drawer on shop-june.com.
+  Rendered once from wx-header so it exists on every page. Line items are built client-side
+  from /cart.js so the drawer always reflects live cart state; quantity/remove use /cart/change.js
+  and add-to-cart is intercepted to open + refresh the drawer (Wix behaviour).
+{%- endcomment -%}
+<div class="wx wxcd" data-wxcd hidden aria-hidden="true">
+  <div class="wxcd__scrim" data-wxcd-close></div>
+  <aside class="wxcd__panel" role="dialog" aria-label="Shopping bag" aria-modal="true">
+    <div class="wxcd__head">
+      <span class="wxcd__title wxH">Your Bag <span class="wxcd__n" data-wxcd-count></span></span>
+      <button type="button" class="wxcd__x" data-wxcd-close aria-label="Close bag">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.2"><path d="m1 1 18 18M19 1 1 19"/></svg>
+      </button>
+    </div>
+    <div class="wxcd__body" data-wxcd-body>
+      <div class="wxcd__loading wxC">Loading…</div>
+    </div>
+    <div class="wxcd__foot" data-wxcd-foot hidden>
+      <div class="wxcd__subrow"><span class="wxC">Subtotal</span><span class="wxC" data-wxcd-total></span></div>
+      <p class="wxcd__note wxC">Shipping &amp; taxes calculated at checkout.</p>
+      <a class="wxcd__checkout wxH" href="/checkout">Checkout</a>
+      <a class="wxcd__view wxC" href="{{ routes.cart_url }}">View bag</a>
+    </div>
+  </aside>
+</div>
+{%- capture wxcss -%}
+  html:root body .wxcd{position:fixed;inset:0;z-index:120}
+  html:root body .wxcd[hidden]{display:none}
+  html:root body .wxcd__scrim{position:absolute;inset:0;background:rgba(0,0,0,.4);opacity:0;transition:opacity .28s ease}
+  html:root body .wxcd.is-open .wxcd__scrim{opacity:1}
+  html:root body .wxcd__panel{position:absolute;top:0;right:0;height:100%;width:100vw;max-width:u(375);background:#fff;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1)}
+  html:root body .wxcd.is-open .wxcd__panel{transform:translateX(0)}
+  html:root body .wxcd__head{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;height:var(--wx-head);padding:0 u(19);border-bottom:1px solid #E8E4DE}
+  html:root body .wxcd__title{font-size:u(14) !important;letter-spacing:u(1.2) !important;text-transform:uppercase;color:#000}
+  html:root body .wxcd__n{color:var(--wx-grey)}
+  html:root body .wxcd__x{width:u(20);height:u(20);padding:0;border:0;background:none;color:#000;cursor:pointer}
+  html:root body .wxcd__x svg{width:u(20);height:u(20)}
+  html:root body .wxcd__body{flex:1 1 auto;overflow-y:auto;padding:u(19)}
+  html:root body .wxcd__loading{font-size:u(13) !important;color:var(--wx-grey)}
+  html:root body .wxcd__empty{padding:u(60) u(10);text-align:center}
+  html:root body .wxcd__empty p{font-size:u(15) !important;color:#000;margin-bottom:u(22)}
+  html:root body .wxcd__empty a{display:inline-flex;align-items:center;justify-content:center;height:u(46);padding:0 u(28);background:var(--wx-brown);color:#fff;font-family:'wxH',Arial,sans-serif !important;font-size:u(12) !important;letter-spacing:u(1.1) !important;text-transform:uppercase}
+  html:root body .wxcd__item{display:flex;gap:u(14);padding:u(18) 0;border-bottom:1px solid #EFECE7}
+  html:root body .wxcd__item:first-child{padding-top:0}
+  html:root body .wxcd__thumb{flex:0 0 auto;width:u(78);height:u(98);background:var(--wx-cream);overflow:hidden}
+  html:root body .wxcd__thumb img{width:100%;height:100%;object-fit:cover}
+  html:root body .wxcd__info{flex:1 1 auto;display:flex;flex-direction:column;min-width:0}
+  html:root body .wxcd__name{font-size:u(14) !important;line-height:u(18);color:#000}
+  html:root body .wxcd__opt{font-size:u(12) !important;line-height:u(17);color:var(--wx-grey);margin-top:u(4)}
+  html:root body .wxcd__prop{font-size:u(11) !important;line-height:u(16);color:var(--wx-grey)}
+  html:root body .wxcd__row2{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:u(12)}
+  html:root body .wxcd__qty{display:inline-flex;align-items:center;border:1px solid #D9D4CD}
+  html:root body .wxcd__qty button{width:u(28);height:u(28);padding:0;border:0;background:none;color:#000;font-size:u(15) !important;line-height:1;cursor:pointer}
+  html:root body .wxcd__qty span{min-width:u(26);text-align:center;font-size:u(13) !important}
+  html:root body .wxcd__price{font-size:u(14) !important;color:#000}
+  html:root body .wxcd__remove{align-self:flex-start;margin-top:u(8);padding:0;border:0;background:none;color:var(--wx-grey);font-size:u(11) !important;letter-spacing:u(.3) !important;text-decoration:underline !important;cursor:pointer}
+  html:root body .wxcd__foot{flex:0 0 auto;padding:u(20) u(19) u(26);border-top:1px solid #E8E4DE}
+  html:root body .wxcd__subrow{display:flex;align-items:center;justify-content:space-between;font-size:u(15) !important;color:#000}
+  html:root body .wxcd__subrow span:last-child{font-family:'wxH',Arial,sans-serif !important}
+  html:root body .wxcd__note{font-size:u(11) !important;color:var(--wx-grey);margin-top:u(6)}
+  html:root body .wxcd__checkout{display:flex;align-items:center;justify-content:center;height:u(50);margin-top:u(16);background:var(--wx-brown);color:#fff;font-size:u(12) !important;letter-spacing:u(1.1) !important;text-transform:uppercase}
+  html:root body .wxcd__view{display:block;text-align:center;margin-top:u(14);font-size:u(12) !important;letter-spacing:u(.4) !important;color:#000;text-decoration:underline !important}
+  html:root body .wxcd.is-busy .wxcd__panel{pointer-events:none}
+  html:root body .wxcd.is-busy .wxcd__body{opacity:.55;transition:opacity .15s}
+  @media (min-width:750px){
+    html:root body .wxcd__panel{max-width:u(420)}
+    html:root body .wxcd__title{font-size:u(13) !important}
+    html:root body .wxcd__name{font-size:u(15) !important;line-height:u(20)}
+    html:root body .wxcd__opt{font-size:u(13) !important}
+    html:root body .wxcd__price{font-size:u(15) !important}
+    html:root body .wxcd__thumb{width:u(88);height:u(110)}
+  }
+{%- endcapture -%}<style>{{ wxcss | replace: 'u(', 'calc(var(--u)*' }}</style>
+<script>
+(function(){
+  var root=document.querySelector('[data-wxcd]');if(!root)return;
+  var body=root.querySelector('[data-wxcd-body]');
+  var foot=root.querySelector('[data-wxcd-foot]');
+  var totalEl=root.querySelector('[data-wxcd-total]');
+  var countEl=root.querySelector('[data-wxcd-count]');
+  var MF={{ shop.money_format | json }};
+  var busy=false;
+
+  function fmt(cents){
+    var v=(cents/100.0);
+    function grp(n){var p=n.split('.');var i=p[0],d=p[1]||'';i=i.replace(/\B(?=(\d{3})+(?!\d))/g,',');return d?i+'.'+d:i;}
+    return MF.replace(/\{\{\s*(\w+)\s*\}\}/g,function(_,k){
+      if(k.indexOf('no_decimals')>-1){var s=Math.round(v).toString();return k.indexOf('comma')>-1?grp(s):s;}
+      var s=v.toFixed(2);return (k.indexOf('comma')>-1||k==='amount')?grp(s):s;
+    });
+  }
+  function esc(s){return (s==null?'':String(s)).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+  function render(cart){
+    countEl.textContent=cart.item_count?('('+cart.item_count+')'):'';
+    if(!cart.items||!cart.items.length){
+      foot.hidden=true;
+      body.innerHTML='<div class="wxcd__empty"><p class="wxC">Your bag is empty.</p><a class="wxH" href="{{ routes.all_products_collection_url }}">Continue shopping</a></div>';
+      return;
+    }
+    var html='';
+    cart.items.forEach(function(it){
+      var opts=(it.options_with_values||[]).filter(function(o){return o.value&&o.value!=='Default Title';}).map(function(o){return esc(o.value);}).join(' · ');
+      var props='';
+      if(it.properties){for(var k in it.properties){if(it.properties.hasOwnProperty(k)&&k.charAt(0)!=='_'&&it.properties[k]){props+='<div class="wxcd__prop">'+esc(k)+': '+esc(it.properties[k])+'</div>';}}}
+      var img=it.image?it.image.replace(/(\.[a-z]+)(\?|$)/i,'_160x$1$2'):'';
+      html+='<div class="wxcd__item" data-key="'+esc(it.key)+'">'
+        +'<a class="wxcd__thumb" href="'+esc(it.url)+'">'+(img?'<img src="'+esc(img)+'" alt="'+esc(it.product_title)+'" loading="lazy">':'')+'</a>'
+        +'<div class="wxcd__info">'
+          +'<a class="wxcd__name" href="'+esc(it.url)+'">'+esc(it.product_title)+'</a>'
+          +(opts?'<div class="wxcd__opt">'+opts+'</div>':'')
+          +props
+          +'<div class="wxcd__row2">'
+            +'<div class="wxcd__qty">'
+              +'<button type="button" data-wxcd-dec aria-label="Decrease">&minus;</button>'
+              +'<span>'+it.quantity+'</span>'
+              +'<button type="button" data-wxcd-inc aria-label="Increase">+</button>'
+            +'</div>'
+            +'<span class="wxcd__price">'+fmt(it.final_line_price)+'</span>'
+          +'</div>'
+          +'<button type="button" class="wxcd__remove" data-wxcd-remove>Remove</button>'
+        +'</div>'
+      +'</div>';
+    });
+    body.innerHTML=html;
+    totalEl.textContent=fmt(cart.total_price);
+    foot.hidden=false;
+  }
+
+  function refresh(){return fetch('{{ routes.cart_url }}.js',{headers:{'Accept':'application/json'}}).then(function(r){return r.json();}).then(function(c){render(c);updateBadge(c.item_count);return c;});}
+  function updateBadge(n){
+    var bag=document.querySelector('.wxhd__bag');if(!bag)return;
+    var b=bag.querySelector('.wxhd__count');
+    if(n>0){if(!b){b=document.createElement('span');b.className='wxhd__count';bag.appendChild(b);}b.textContent=n;}
+    else if(b){b.remove();}
+  }
+  function change(key,qty){
+    if(busy)return;busy=true;root.classList.add('is-busy');
+    fetch('{{ routes.cart_url }}/change.js',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({id:key,quantity:qty})})
+      .then(function(r){return r.json();}).then(function(c){render(c);updateBadge(c.item_count);}).catch(function(){}).then(function(){busy=false;root.classList.remove('is-busy');});
+  }
+
+  function open(){root.hidden=false;root.setAttribute('aria-hidden','false');document.body.classList.add('wx-lock');requestAnimationFrame(function(){root.classList.add('is-open');});refresh();}
+  function close(){root.classList.remove('is-open');document.body.classList.remove('wx-lock');setTimeout(function(){root.hidden=true;root.setAttribute('aria-hidden','true');},320);}
+
+  // open trigger: bag icon. Capture phase + stopPropagation so the theme's own
+  // cart scripts don't also handle the click (this inline script registers during
+  // parse, before the theme's deferred modules, so it wins the capture race).
+  document.addEventListener('click',function(e){
+    var bag=e.target.closest('.wxhd__bag');
+    if(bag){e.preventDefault();e.stopPropagation();open();return;}
+    var c=e.target.closest('[data-wxcd-close]');if(c){e.preventDefault();close();return;}
+    var row=e.target.closest('.wxcd__item');if(row){
+      var key=row.getAttribute('data-key');
+      var span=row.querySelector('.wxcd__qty span');var q=parseInt(span?span.textContent:'0',10)||0;
+      if(e.target.closest('[data-wxcd-inc]')){change(key,q+1);return;}
+      if(e.target.closest('[data-wxcd-dec]')){change(key,Math.max(0,q-1));return;}
+      if(e.target.closest('[data-wxcd-remove]')){change(key,0);return;}
+    }
+  },true);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!root.hidden){close();}});
+
+  // Open the drawer after any add-to-cart, whoever performs it (the theme's own
+  // product form AJAX-adds via fetch; we patch fetch to catch it). Fallback below
+  // handles a plain non-AJAX form post.
+  var _fetch=window.fetch;
+  window.fetch=function(){
+    var url=arguments[0];url=(url&&url.url)?url.url:(''+url);
+    var p=_fetch.apply(this,arguments);
+    if(url.indexOf('/cart/add')>-1){p.then(function(r){if(r&&r.ok){setTimeout(open,60);}}).catch(function(){});}
+    return p;
+  };
+  document.addEventListener('submit',function(e){
+    if(e.defaultPrevented)return;
+    var form=e.target.closest('form');
+    if(!form)return;var action=(form.getAttribute('action')||'');
+    if(action.indexOf('/cart/add')===-1)return;
+    e.preventDefault();
+    var fd=new FormData(form);
+    var btn=form.querySelector('[type="submit"],button:not([type])');if(btn){btn.setAttribute('aria-busy','true');}
+    fetch('{{ routes.cart_url }}/add.js',{method:'POST',headers:{'Accept':'application/json','X-Requested-With':'XMLHttpRequest'},body:fd})
+      .then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(){open();}).catch(function(){form.submit();}).then(function(){if(btn){btn.removeAttribute('aria-busy');}});
+  });
+})();
+</script>

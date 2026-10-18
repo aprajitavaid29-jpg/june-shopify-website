@@ -3,9 +3,8 @@
 Theme files for the unpublished Shopify theme **"June – Wix replica"** (store: June., `ec6x8n-bh.myshopify.com`),
 rebuilt to match the original Wix site page by page at 1440px desktop and 375px phone.
 
-`theme/` mirrors the Shopify theme folder layout. It holds the files added or changed in this pass;
-the rest of the theme (Horizon base files and the earlier `wx-*` home, header, footer, collection and
-product sections) lives in the Shopify theme itself.
+`theme/` mirrors the Shopify theme folder layout and holds every custom `wx-*` file of the replica.
+The Horizon base files and the older, unused `june-*` sections live only in the Shopify theme.
 
 | Page | Section | Template |
 | --- | --- | --- |
@@ -16,6 +15,11 @@ product sections) lives in the Shopify theme itself.
 | Online Consultation, Contact, Return Form | `sections/wx-split.liquid` | `templates/page.online-consultation.json`, `page.contact.json`, `page.return-form.json` |
 | Gift Finder (Quizell quiz) | `sections/wx-gift-finder.liquid` | `templates/page.gift-finder.json` |
 | Policy pages (terms, privacy, refund, shipping, accessibility, care programme, size guide) | `sections/wx-policy.liquid` | `templates/page.policy.json` |
+| Home | `sections/wx-home.liquid` + `snippets/wx-home-css.liquid` | `templates/index.json` |
+| Collections | `sections/wx-collection.liquid` + `snippets/wx-collection-css.liquid` | `templates/collection.json` |
+| Products | `sections/wx-product.liquid` + `snippets/wx-product-*.liquid`, `wx-info.liquid` | `templates/product.json` |
+| Other pages | `sections/wx-page.liquid` + `snippets/wx-page-css.liquid` | `templates/page.json` |
+| Header, cart drawer, footer | `sections/wx-header.liquid`, `wx-footer.liquid`, `snippets/wx-cart-drawer.liquid` | `sections/header-group.json`, `footer-group.json` |
 | Site-wide Outfit font | `sections/wx-font.liquid` | `sections/header-group.json` |
 
 Shared pieces: `snippets/wx-base.liquid` (Outfit font files and the screen-scaled `u()` unit),
@@ -24,3 +28,12 @@ Shared pieces: `snippets/wx-base.liquid` (Outfit font files and the screen-scale
 Images and videos are stored in Shopify under Content > Files as `wx-img-<wix id>.jpg|png` and
 `wx-*.mp4`, copied from the Wix media library. Policy page text lives in each Shopify page's content,
 copied word for word from Wix.
+
+## Prices
+
+`data/` holds a price check from 18 Oct 2026. Wix prices were changed on 15 Oct, after the products were
+imported into Shopify.
+
+- `shopify-prices-2026-10-18.json` is a backup of every Shopify variant price before any sync.
+- `wix-prices-2026-10-18.json` holds the per-variant Wix prices.
+- `price-sync-plan.csv` lists the 1,136 variants (83 products) whose prices differ.

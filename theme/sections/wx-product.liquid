@@ -1,0 +1,115 @@
+{%- comment -%} Wix replica product page (shop-june.com/product-page/*), measured at 375px and 1440px. Data per product in metafield wx.data (copied from Wix). {%- endcomment -%}
+{%- render 'wx-base' -%}
+{%- assign wd = product.metafields.wixd.data.value -%}
+{%- assign cur = product.selected_or_first_available_variant -%}
+{%- capture heart -%}<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M8.1816,5.0039 C7.9276,5.0039 7.6696,5.0279 7.4106,5.0759 C5.7326,5.3909 4.3566,6.8479 4.0646,8.6189 C3.9346,9.4039 4.0036,10.2029 4.2616,10.9319 C4.2636,10.9379 4.2656,10.9439 4.2676,10.9499 C5.1716,13.8579 10.2066,17.4019 11.7286,18.4189 C11.8966,18.5329 12.1076,18.5309 12.2746,18.4189 C13.7956,17.4019 18.8266,13.8589 19.7326,10.9499 C19.9966,10.2029 20.0646,9.4039 19.9356,8.6189 C19.6426,6.8479 18.2666,5.3909 16.5896,5.0759 C14.9596,4.7749 13.3646,5.4459 12.4126,6.8369 C12.2256,7.1099 11.7736,7.1099 11.5876,6.8369 C10.7866,5.6669 9.5276,5.0039 8.1816,5.0039 M12.0016,19.5029 C11.7136,19.5029 11.4246,19.4189 11.1726,19.2509 C9.1366,17.8899 4.2116,14.3829 3.3206,11.2869 C3.0026,10.3909 2.9196,9.4199 3.0786,8.4559 C3.4396,6.2559 5.1626,4.4459 7.2266,4.0589 C8.9706,3.7349 10.7346,4.3459 12.0016,5.6979 C13.2656,4.3459 15.0286,3.7349 16.7766,4.0589 C18.8406,4.4459 20.5636,6.2559 20.9246,8.4559 C21.0836,9.4199 20.9996,10.3909 20.6796,11.2869 C19.7876,14.3829 14.8636,17.8899 12.8306,19.2509 C12.5786,19.4189 12.2896,19.5029 12.0016,19.5029"/></svg>{%- endcapture -%}
+{%- capture chev -%}<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M18.2546728,8.18171329 L18.9617796,8.88882007 L12.5952867,15.2537133 L12.5978964,15.2558012 L11.8907896,15.962908 L11.8882867,15.9607133 L11.8874628,15.9617796 L11.180356,15.2546728 L11.1812867,15.2527133 L4.81828671,8.88882007 L5.52539349,8.18171329 L11.8882867,14.5457133 L18.2546728,8.18171329 Z"/></svg>{%- endcapture -%}
+{%- capture arrow -%}<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M8.70710678,4.99810828 L15.068,11.3651083 L15.0722115,11.3620693 L15.7793183,12.0691761 L15.776,12.0721083 L15.7782433,12.0758831 L15.0711365,12.7829899 L15.069,12.7801083 L8.70710678,19.1434929 L8,18.4363861 L14.361,12.0721083 L8,5.70521506 L8.70710678,4.99810828 Z"/></svg>{%- endcapture -%}
+{%- capture plus -%}<svg viewBox="0 0 15 15" fill="currentColor" aria-hidden="true"><path class="wxp__pv" d="M8 7V2H7v5H2v1h5v5h1V8h5V7z"/></svg>{%- endcapture -%}
+<div class="wx wxp" data-wxp>
+  <div class="wxp__top">
+    <a class="wxp__back wxH" href="{{ routes.root_url }}">{{ arrow }}<span>Back to Home</span></a>
+    <nav class="wxp__bc wxH" aria-label="Breadcrumbs"><a href="{{ routes.root_url }}">Home</a><span> / </span><a href="{{ product.url }}">{{ product.title }}</a></nav>
+    <button type="button" class="wxp__cur wxB" aria-label="Currency">INR (₹){{ chev }}</button>
+  </div>
+  <div class="wxp__main">
+    <div class="wxp__gal">
+      <div class="wxp__thumbs" data-wxp-thumbs>
+        {%- for m in product.media -%}
+          <button type="button" class="wxp__thumb{% if forloop.first %} is-on{% endif %}" data-i="{{ forloop.index0 }}" aria-label="Image {{ forloop.index }}"><img src="{{ m | image_url: width: 200 }}" alt="" loading="lazy"></button>
+        {%- endfor -%}
+      </div>
+      <div class="wxp__stage">
+        <div class="wxp__track" data-wxp-track>
+          {%- for m in product.media -%}
+            <div class="wxp__slide"><img src="{{ m | image_url: width: 1400 }}" srcset="{{ m | image_url: width: 700 }} 700w, {{ m | image_url: width: 1400 }} 1400w" sizes="(min-width:750px) 46vw, 90vw" alt="{{ m.alt | escape }}" {% unless forloop.first %}loading="lazy"{% endunless %}></div>
+          {%- endfor -%}
+        </div>
+        {%- if product.tags contains 'New In' -%}<span class="wxp__rib">New In</span>{%- endif -%}
+        <span class="wxp__wish" aria-hidden="true">{{ heart }}</span>
+      </div>
+    </div>
+    <div class="wxp__info">
+      <p class="wxp__sku">SKU: {{ cur.sku | default: wd.sku }}</p>
+      <h1 class="wxp__title wxH">{{ product.title }}</h1>
+      <p class="wxp__price" data-wxp-price>₹{{ cur.price | money_without_currency }}</p>
+      {%- form 'product', product, class: 'wxp__form', data-wxp-form: '' -%}
+        <input type="hidden" name="id" value="{{ cur.id }}" data-wxp-id>
+        {%- for opt in product.options_with_values -%}
+          {%- assign otype = 'BOX' -%}
+          {%- for wo in wd.options -%}{%- if wo.title == opt.name and wo.type == 'COLOR' -%}{%- assign otype = 'COLOR' -%}{%- endif -%}{%- endfor -%}
+          {%- if opt.values.size > 0 -%}
+          <fieldset class="wxp__opt wxp__opt--{{ otype | downcase }}" data-wxp-opt="{{ forloop.index0 }}">
+            <legend><span class="wxp__ol">{{ opt.name }}</span><span class="wxp__osel" data-wxp-osel></span> *</legend>
+            <div class="wxp__ovals">
+              {%- for v in opt.values -%}
+                {%- assign hex = '#E3B742' -%}
+                {%- if v contains 'White' or v contains 'Silver' -%}{%- assign hex = '#DBDBDB' -%}{%- endif -%}
+                {%- if v contains 'Rose' -%}{%- assign hex = '#E8B4A0' -%}{%- endif -%}
+                {%- for wo in wd.options -%}{%- if wo.title == opt.name -%}{%- for wv in wo.values -%}{%- if wv[0] == v and wv[1] contains '#' -%}{%- assign hex = wv[1] -%}{%- endif -%}{%- endfor -%}{%- endif -%}{%- endfor -%}
+                <label class="wxp__ov" title="{{ v | escape }}"><input type="radio" name="wxopt{{ forloop.parentloop.index0 }}" value="{{ v | escape }}"><span>{%- if otype == 'COLOR' -%}<i style="background:{{ hex }}"></i>{%- else -%}{{ v }}{%- endif -%}</span></label>
+              {%- endfor -%}
+            </div>
+            <p class="wxp__err" hidden>Select {{ opt.name }}</p>
+          </fieldset>
+          {%- endif -%}
+        {%- endfor -%}
+        {%- for t in wd.ctf -%}
+          <div class="wxp__ct">
+            <label for="wxct{{ forloop.index }}">{{ t.title }}{% unless t.isMandatory %} (optional){% endunless %}</label>
+            <div class="wxp__tawrap"><textarea id="wxct{{ forloop.index }}" name="properties[{{ t.title | escape }}]" maxlength="{{ t.inputLimit }}" rows="1" data-wxp-ta{% if t.isMandatory %} required{% endif %}></textarea></div>
+            <p class="wxp__cnt" data-wxp-cnt>0/{{ t.inputLimit }}</p>
+          </div>
+        {%- endfor -%}
+        {%- if product.metafields.wixd.pre != blank -%}<p class="wxp__pre wxH">{{ product.metafields.wixd.pre }}</p>{%- endif -%}
+        <div class="wxp__buy">
+          <button type="submit" class="wxp__atc wxH"{% unless product.available %} disabled{% endunless %}>{% if product.metafields.wixd.pre != blank %}MADE TO ORDER{% elsif product.available %}ADD TO CART{% else %}OUT OF STOCK{% endif %}</button>
+          <span class="wxp__wish2" aria-hidden="true">{{ heart }}</span>
+        </div>
+      {%- endform -%}
+      <div class="wxp__desc wxH">{{ wd.description | default: product.description }}</div>
+      {%- if wd.info.size > 0 -%}
+        <ul class="wxp__acc">
+          {%- for s in wd.info -%}
+            <li class="wxp__ai"><button type="button" class="wxp__ab" aria-expanded="false" data-wxp-acc><span class="wxH">{{ s.title }}</span>{{ plus }}</button><div class="wxp__ad wxH" hidden>{%- if s.ref -%}{%- render 'wx-info', k: s.ref -%}{%- else -%}{{ s.html }}{%- endif -%}</div></li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+{%- render 'wx-product-promise', part: 'promise' -%}
+{%- if wd.rel.size > 0 -%}
+<section class="wx wxpr" aria-label="You may also like">
+  <h2 class="wxpr__t wxH">YOU MAY ALSO LIKE</h2>
+  <div class="wxpr__wrap">
+    <ul class="wxpr__track" data-wxpr-track>
+      {%- for h in wd.rel limit: 16 -%}
+        {%- assign rp = all_products[h] -%}
+        {%- if rp.id -%}
+          <li class="wxpr__it">
+            <a class="wxpr__img" href="{{ rp.url }}">
+              {%- if rp.featured_media -%}<img class="wxpr__a" src="{{ rp.featured_media | image_url: width: 700 }}" alt="{{ rp.featured_media.alt | default: rp.title | escape }}" loading="lazy">{%- endif -%}
+              {%- if rp.media.size > 1 -%}<img class="wxpr__b" src="{{ rp.media[1] | image_url: width: 700 }}" alt="" loading="lazy">{%- endif -%}
+              <span class="wxpr__heart" aria-hidden="true">{{ heart }}</span>
+              <span class="wxpr__qv">Quick View</span>
+            </a>
+            <a class="wxpr__info" href="{{ rp.url }}"><span>{{ rp.title }}</span><span class="wxpr__price">₹{{ rp.price | money_without_currency }}</span></a>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+    <button type="button" class="wxpr__nav wxpr__nav--l" aria-label="Previous" data-wxpr-prev>{{ arrow }}</button>
+    <button type="button" class="wxpr__nav wxpr__nav--r" aria-label="Next" data-wxpr-next>{{ arrow }}</button>
+  </div>
+</section>
+{%- endif -%}
+
+<script type="application/json" data-wxp-variants>{{ product.variants | json }}</script>
+{%- render 'wx-product-promise', part: 'strip' -%}
+{%- render 'wx-product-js' -%}
+{%- render 'wx-product-css' -%}
+{%- render 'wx-product-fix' -%}
+{% schema %}
+{ "name": "Wix product", "settings": [] }
+{% endschema %}

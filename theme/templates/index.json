@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "wx_home": {
+      "type": "wx-home",
+      "settings": {
+        "film_url": "https://cdn.shopify.com/videos/c/vp/0c366138a5074fcfb5697931aaa85c2d/0c366138a5074fcfb5697931aaa85c2d.HD-720p-1.6Mbps-97630661.mp4"
+      }
+    }
+  },
+  "order": ["wx_home"]
+}

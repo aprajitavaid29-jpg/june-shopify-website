@@ -1,0 +1,171 @@
+{%- comment -%}
+  Wix replica homepage, measured from shop-june.com on a 375px phone and a 1440px desktop.
+  Order: hero slider > New In > three banners > Designed for everyday life slider > categories >
+  We are June film > story > Women of June > the three promises.
+{%- endcomment -%}
+{%- render 'wx-base' -%}
+{%- capture arrow -%}<svg viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M0 5h15M11 1l4 4-4 4"/></svg>{%- endcapture -%}
+{%- capture chev_l -%}<svg viewBox="0 0 10 18" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M9 1 1 9l8 8"/></svg>{%- endcapture -%}
+{%- capture chev_r -%}<svg viewBox="0 0 10 18" fill="none" stroke="currentColor" stroke-width="1.2"><path d="m1 1 8 8-8 8"/></svg>{%- endcapture -%}
+{%- assign s = section.settings -%}
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,500&display=swap" rel="stylesheet">
+<div class="wx wxh">
+
+  <section class="wxh-slide wxh-slide--hero" data-wx-slider>
+    <div class="wxh-slide__track">
+      {%- for n in (1..4) -%}
+        {%- assign m = 'wx-heroD-' | append: n | append: '.jpg' -%}
+        {%- assign d = 'wx-hero-' | append: n | append: '.jpg' -%}
+        <div class="wxh-slide__item{% if forloop.first %} is-on{% endif %}">
+          <picture>
+            <source media="(min-width:750px)" srcset="{{ d | file_img_url: '2400x' }}">
+            <img src="{{ m | file_img_url: '1200x' }}" alt="June fine jewellery" {% unless forloop.first %}loading="lazy"{% endunless %}>
+          </picture>
+        </div>
+      {%- endfor -%}
+    </div>
+    <h2 class="wxh-slide__title wxA">Fine Jewellery<br>made to move with you</h2>
+    <button type="button" class="wxh-slide__nav wxh-slide__nav--l" aria-label="Previous" data-prev>{{ chev_l }}</button>
+    <button type="button" class="wxh-slide__nav wxh-slide__nav--r" aria-label="Next" data-next>{{ chev_r }}</button>
+    <a class="wxh-slide__cta wxB" href="/collections/all-fine-jewellery">Shop Now {{ arrow }}</a>
+  </section>
+
+  {%- assign c = collections['home-new-in'] -%}
+  <section class="wxh-new">
+    <h2 class="wxh-new__title wxA">New In</h2>
+    <div class="wxh-new__wrap">
+      <div class="wxh-new__track" data-wx-row>
+        {%- for p in c.products limit: 24 -%}
+          <div class="wxh-card">
+            <a class="wxh-card__img" href="{{ p.url }}">
+              {%- if p.featured_media -%}<img class="wxh-card__a" src="{{ p.featured_media | image_url: width: 700 }}" alt="{{ p.featured_media.alt | default: p.title | escape }}" loading="lazy">{%- endif -%}
+              {%- if p.media.size > 1 -%}<img class="wxh-card__b" src="{{ p.media[1] | image_url: width: 700 }}" alt="" loading="lazy">{%- endif -%}
+              <span class="wxh-card__heart" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 19.5s-7-4.3-7-9.6A3.9 3.9 0 0 1 12 7.6a3.9 3.9 0 0 1 7 2.3c0 5.3-7 9.6-7 9.6Z"/></svg></span>
+              <span class="wxh-card__qv">Quick View</span>
+            </a>
+            <a class="wxh-card__info" href="{{ p.url }}"><span class="wxh-card__name">{{ p.title }}</span><span class="wxh-card__price">₹{{ p.price | money_without_currency }}</span></a>
+          </div>
+        {%- endfor -%}
+      </div>
+      <button type="button" class="wxh-new__nav wxh-new__nav--l" aria-label="Previous Product" data-row-prev>{{ chev_l }}</button>
+      <button type="button" class="wxh-new__nav wxh-new__nav--r" aria-label="Next Product" data-row-next>{{ chev_r }}</button>
+    </div>
+    <a class="wx-arrowlink wxh-new__cta" href="/collections/all-fine-jewellery">Shop Now {{ arrow }}</a>
+  </section>
+
+  <section class="wxh-ban">
+    <a class="wxh-ban__item" href="/collections/more-is-more-statement-pieces"><img class="wxh-ban__img wxh-ban__img--1" src="{{ 'wx-ban-statement.png' | file_img_url: '1000x' }}" alt="Statement Jewellery" loading="lazy"><span class="wx-arrowlink">Statement Jewellery {{ arrow }}</span></a>
+    <a class="wxh-ban__item" href="/collections/everyday-essentials"><img class="wxh-ban__img wxh-ban__img--2" src="{{ 'wx-ban-everyday.png' | file_img_url: '1000x' }}" alt="Everyday Essentials" loading="lazy"><span class="wx-arrowlink">Everyday Essentials {{ arrow }}</span></a>
+    <a class="wxh-ban__item" href="/collections/all-fine-jewellery"><img class="wxh-ban__img wxh-ban__img--3" src="{{ 'wx-ban-gift.png' | file_img_url: '1000x' }}" alt="The Gift Shop" loading="lazy"><span class="wx-arrowlink">The Gift Shop {{ arrow }}</span></a>
+  </section>
+
+  <section class="wxh-slide wxh-slide--ev" data-wx-slider>
+    <div class="wxh-slide__track">
+      {%- for n in (1..4) -%}
+        {%- assign m = 'wx-evD-' | append: n | append: '.jpg' -%}
+        {%- assign d = 'wx-ev-' | append: n | append: '.jpg' -%}
+        <div class="wxh-slide__item{% if forloop.first %} is-on{% endif %}">
+          <picture>
+            <source media="(min-width:750px)" srcset="{{ d | file_img_url: '2400x' }}">
+            <img src="{{ m | file_img_url: '1200x' }}" alt="June everyday jewellery" loading="lazy">
+          </picture>
+        </div>
+      {%- endfor -%}
+    </div>
+    <h2 class="wxh-slide__title wxA">Designed for <br class="wx-mob">everyday life</h2>
+    <button type="button" class="wxh-slide__nav wxh-slide__nav--l" aria-label="Previous" data-prev>{{ chev_l }}</button>
+    <button type="button" class="wxh-slide__nav wxh-slide__nav--r" aria-label="Next" data-next>{{ chev_r }}</button>
+    <a class="wxh-slide__cta wxB" href="/collections/all-fine-jewellery">Shop Now {{ arrow }}</a>
+  </section>
+
+  <section class="wxh-cat">
+    <a class="wxh-cat__item" href="/collections/earring"><span class="wxh-cat__img"><img src="{{ 'wx-cat-earrings.png' | file_img_url: '700x' }}" alt="Earrings" loading="lazy"></span><span class="wx-arrowlink">Earrings {{ arrow }}</span></a>
+    <a class="wxh-cat__item" href="/collections/bracelets"><span class="wxh-cat__img"><img src="{{ 'wx-cat-bracelet.png' | file_img_url: '700x' }}" alt="Bracelets" loading="lazy"></span><span class="wx-arrowlink"><span class="wx-mob">Rings &amp; Bracelets</span><span class="wx-desk">Bracelets</span> {{ arrow }}</span></a>
+    <a class="wxh-cat__item wxh-cat__item--r2" href="/collections/necklaces"><span class="wxh-cat__img"><img src="{{ 'wx-cat-necklace.png' | file_img_url: '700x' }}" alt="Necklaces" loading="lazy"></span><span class="wx-arrowlink">Necklaces {{ arrow }}</span></a>
+    <a class="wxh-cat__item wx-desk" href="/collections/ring"><span class="wxh-cat__img"><img src="{{ 'wx-cat-ring.png' | file_img_url: '700x' }}" alt="Rings" loading="lazy"></span><span class="wx-arrowlink">Rings {{ arrow }}</span></a>
+    <a class="wxh-cat__item wxh-cat__item--r2" href="/collections/charms"><span class="wxh-cat__img"><img src="{{ 'wx-cat-charms.png' | file_img_url: '700x' }}" alt="Charms" loading="lazy"></span><span class="wx-arrowlink">Charms {{ arrow }}</span></a>
+  </section>
+
+  <section class="wxh-film">
+    {%- if s.film_url != blank -%}<video src="{{ s.film_url }}" autoplay muted loop playsinline preload="metadata"></video>{%- endif -%}
+    <h2 class="wxh-film__title wxD">WE      ARE     JUNE</h2>
+  </section>
+
+  <section class="wxh-story">
+    <p>June was never meant to be built in isolation.</p>
+    <p>From the beginning, the goal was to build it with the people it was made for. Our first collection took shape through conversations with women from around the world, they didn't just inspire the collection. They are the reason it looks the way it does. June was built for women who move through the world on their own terms and don't wait for an occasion to show up as themselves.</p>
+    <p>This space is theirs. Their stories, their way of wearing June, their version of what it means. Because June only becomes what it's meant to be when it's actually lived in.</p>
+    <span class="wx-arrowlink wxh-story__link">Women of June {{ arrow }}</span>
+  </section>
+
+  <section class="wxh-women">
+    <div class="wxh-women__track" data-wx-row>
+      {%- assign women = 'alison:Alison, Australia|elisa:Elisa, Germany|paula:Paula, Australia|emma:Emma, Australia|sophia:Sophia, Australia|jade:Jade, France|anna:Anna, Spain|lorena:Lorena, Spain' | split: '|' -%}
+      {%- for w in women -%}
+        {%- assign wp = w | split: ':' -%}
+        {%- assign f = 'wx-women-' | append: wp[0] | append: '.jpg' -%}
+        <figure class="wxh-women__card"><img src="{{ f | file_img_url: '800x' }}" alt="{{ wp[1] }}" loading="lazy"><figcaption>{{ wp[1] }}</figcaption></figure>
+      {%- endfor -%}
+    </div>
+    <button type="button" class="wxh-women__next" aria-label="Next Item" data-row-next>{{ chev_r }}</button>
+  </section>
+
+  <section class="wxh-prom">
+    <div class="wxh-prom__item">
+      <svg class="wxh-prom__ic wxh-prom__ic--1" viewBox="23.6 19.87 96.8 96.8"><path d="M72 116.67c-26.69 0-48.4-21.71-48.4-48.4s21.71-48.4 48.4-48.4 48.4 21.71 48.4 48.4-21.71 48.4-48.4 48.4m0-93.49c-24.87 0-45.1 20.23-45.1 45.1s20.23 45.1 45.1 45.1 45.1-20.23 45.1-45.1-20.23-45.1-45.1-45.1"/><path d="M48.83 68.61c18.81.29 23.56-10.68 23.01-25.71.49 19.56 7.78 26.05 23.34 26.05-16.92 0-23.04 9.96-23.34 24.7.21-17-8.28-24.45-23.01-25.04"/></svg>
+      <h3 class="wxB">Lifetime Warranty</h3>
+      <p>Lifetime servicing and warranty, designed to keep your piece looking its best for years to come.</p>
+    </div>
+    <div class="wxh-prom__item">
+      <svg class="wxh-prom__ic wxh-prom__ic--2" viewBox="22.77 19.87 98.39 96.8"><path d="M71.08 116.67c-18.33 0-34.88-10.17-43.19-26.53l3.04-1.55c7.72 15.21 23.1 24.66 40.14 24.66 23.18 0 42.42-17.36 44.76-40.39l3.39.35c-2.51 24.77-23.21 43.45-48.15 43.45Z"/><path d="m26.18 65.32-3.41-.22c1.64-25.36 22.86-45.23 48.3-45.23 20.86 0 39.31 13.28 45.92 33.06l-3.24 1.08a44.93 44.93 0 0 0-42.68-30.72c-23.65 0-43.37 18.46-44.89 42.04Z"/><path d="m116.39 55.41-12.9-4.07 1.03-3.25 9.85 3.11 3.61-9.29 3.18 1.24z"/><path d="m28.81 100.97-3.33-.77 2.99-12.9 13.14 2-.51 3.37-10.02-1.52z"/></svg>
+      <h3 class="wxB">Buy-Back &amp; Exchange</h3>
+      <p>Every June piece carries lasting precious metal value and is eligible for future buy-back and 100% exchange.</p>
+    </div>
+    <div class="wxh-prom__item">
+      <svg class="wxh-prom__ic wxh-prom__ic--3" viewBox="1.75 19.86 140.24 96.81"><path d="M50.15 116.67c-26.69 0-48.4-21.71-48.4-48.4s21.71-48.4 48.4-48.4c3.84 0 7.68.45 11.39 1.35l-.83 3.45c-3.44-.83-6.99-1.25-10.55-1.25-24.73 0-44.85 20.12-44.85 44.85s20.12 44.85 44.85 44.85S95.01 93 95.01 68.27c0-12.15-4.78-23.52-13.45-32.03l2.48-2.54c9.36 9.18 14.52 21.45 14.52 34.56 0 26.69-21.71 48.4-48.4 48.4Z"/><path d="M93.6 116.67c-4.4 0-8.77-.59-12.99-1.77l.95-3.42c3.91 1.08 7.96 1.63 12.04 1.63 24.73 0 44.85-20.12 44.85-44.85S118.33 23.41 93.6 23.41 48.75 43.53 48.75 68.26c0 12.36 4.93 23.88 13.87 32.43l-2.46 2.57c-9.65-9.22-14.97-21.65-14.97-35 0-26.69 21.71-48.4 48.4-48.4s48.4 21.71 48.4 48.4-21.71 48.4-48.4 48.4Z"/></svg>
+      <h3 class="wxB">Certified Materials</h3>
+      <p>Every June piece includes a certificate verifying its precious metal composition and June Gold Forming&trade; specifications</p>
+    </div>
+  </section>
+</div>
+
+{%- render 'wx-home-css' -%}
+<script>
+(function(){
+  /* sliders: the next picture slides in from the left every 3 seconds, like the Wix site */
+  document.querySelectorAll('.wxh [data-wx-slider]').forEach(function(sl){
+    var items=[].slice.call(sl.querySelectorAll('.wxh-slide__item')),i=0,t;
+    function go(n,dir){
+      var cur=items[i],k=(n+items.length)%items.length,nx=items[k];if(k===i)return;
+      nx.classList.add('no-anim');nx.classList.remove('is-on');nx.style.transform=dir<0?'translateX(100%)':'translateX(-100%)';
+      void nx.offsetWidth;nx.classList.remove('no-anim');nx.style.transform='';nx.classList.add('is-on');
+      cur.classList.remove('is-on');cur.style.transform=dir<0?'translateX(-100%)':'translateX(100%)';
+      setTimeout(function(){cur.classList.add('no-anim');cur.style.transform='';void cur.offsetWidth;cur.classList.remove('no-anim');},1050);
+      i=k;
+    }
+    function auto(){clearInterval(t);t=setInterval(function(){go(i+1,1);},3000);}
+    sl.querySelector('[data-next]').addEventListener('click',function(){go(i+1,1);auto();});
+    sl.querySelector('[data-prev]').addEventListener('click',function(){go(i-1,-1);auto();});
+    var x0=null;sl.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
+    sl.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40){dx<0?go(i+1,1):go(i-1,-1);auto();}x0=null;},{passive:true});
+    auto();
+  });
+  /* rows: arrows move one card */
+  document.querySelectorAll('.wxh [data-wx-row]').forEach(function(row){
+    var box=row.parentElement;function step(){var c=row.children[0];return c?c.getBoundingClientRect().width+parseFloat(getComputedStyle(row).columnGap||0):300;}
+    var n=box.querySelector('[data-row-next]'),p=box.querySelector('[data-row-prev]');
+    n&&n.addEventListener('click',function(){row.scrollBy({left:step(),behavior:'smooth'});});
+    p&&p.addEventListener('click',function(){row.scrollBy({left:-step(),behavior:'smooth'});});
+  });
+})();
+</script>
+{% schema %}
+{
+  "name": "Wix homepage",
+  "settings": [
+    { "type": "text", "id": "film_url", "label": "We are June film (video URL)" }
+  ],
+  "presets": [{ "name": "Wix homepage" }]
+}
+{% endschema %}

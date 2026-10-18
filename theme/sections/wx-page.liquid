@@ -1,0 +1,10 @@
+{%- comment -%} Wix replica: policy / FAQ / text content pages {%- endcomment -%}
+{%- render 'wx-base' -%}
+<div class="wx wxpg">
+  <h1 class="wxpg__t">{{ page.title }}</h1>
+  <div class="wxpg__c">{{ page.content }}</div>
+</div>
+{%- render 'wx-page-css' -%}
+{% schema %}
+{ "name": "Wix page", "settings": [] }
+{% endschema %}

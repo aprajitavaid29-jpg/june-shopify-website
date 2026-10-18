@@ -1,0 +1,26 @@
+<script>
+(function(){
+  var r=document.querySelector('[data-wxp]');if(!r)return;
+  var vs=JSON.parse(document.querySelector('[data-wxp-variants]').textContent);
+  var track=r.querySelector('[data-wxp-track]'),thumbs=[].slice.call(r.querySelectorAll('.wxp__thumb'));
+  function go(i){track.scrollTo({left:i*track.clientWidth,behavior:'smooth'});}
+  thumbs.forEach(function(t){t.addEventListener('click',function(){go(+t.dataset.i);});});
+  var tm;track.addEventListener('scroll',function(){clearTimeout(tm);tm=setTimeout(function(){var i=Math.round(track.scrollLeft/track.clientWidth);thumbs.forEach(function(t,k){t.classList.toggle('is-on',k===i);});},60);});
+  var opts=[].slice.call(r.querySelectorAll('[data-wxp-opt]')),price=r.querySelector('[data-wxp-price]'),idIn=r.querySelector('[data-wxp-id]'),sku=r.querySelector('.wxp__sku');
+  function fmt(c){return '₹'+(c/100).toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});}
+  function sel(){return opts.map(function(f){var c=f.querySelector('input:checked');return c?c.value:null;});}
+  function upd(){var s=sel();opts.forEach(function(f,k){var o=f.querySelector('[data-wxp-osel]');if(f.classList.contains('wxp__opt--color'))o.textContent=s[k]?': '+s[k]:'';if(s[k])f.querySelector('.wxp__err').hidden=true;});
+    var v=vs.find(function(x){return x.options.every(function(o,k){return s[k]===null||s[k]===o;});});
+    var full=vs.find(function(x){return x.options.every(function(o,k){return s[k]===o;});});
+    if(full){idIn.value=full.id;if(full.sku)sku.textContent='SKU: '+full.sku;}
+    if(v)price.textContent=fmt((full||v).price);}
+  opts.forEach(function(f){f.addEventListener('change',upd);});
+  if(opts.length===0||vs.length===1){}
+  r.querySelector('[data-wxp-form]').addEventListener('submit',function(e){var s=sel(),ok=true;opts.forEach(function(f,k){if(!s[k]){ok=false;f.querySelector('.wxp__err').hidden=false;}});if(!ok)e.preventDefault();});
+  r.querySelectorAll('[data-wxp-ta]').forEach(function(t){var c=t.closest('.wxp__ct').querySelector('[data-wxp-cnt]');t.addEventListener('input',function(){c.textContent=t.value.length+'/'+t.maxLength;});});
+  r.querySelectorAll('[data-wxp-acc]').forEach(function(b){b.addEventListener('click',function(){var d=b.nextElementSibling;d.hidden=!d.hidden;b.setAttribute('aria-expanded',!d.hidden);});});
+  var rt=document.querySelector('[data-wxpr-track]');if(rt){var it=function(){var a=rt.querySelector('.wxpr__it');return a?a.getBoundingClientRect().width+parseFloat(getComputedStyle(rt).columnGap||0):300;};
+    document.querySelector('[data-wxpr-prev]').addEventListener('click',function(){rt.scrollBy({left:-it(),behavior:'smooth'});});
+    document.querySelector('[data-wxpr-next]').addEventListener('click',function(){rt.scrollBy({left:it(),behavior:'smooth'});});}
+})();
+</script>

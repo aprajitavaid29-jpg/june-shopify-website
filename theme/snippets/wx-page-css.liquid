@@ -1,0 +1,32 @@
+{%- capture wxcss -%}
+@font-face{font-family:'wxP1';src:url(https://static.wixstatic.com/ufonts/a0c786_9bcbca302e8a4721855ebf0507400050/woff2/file.woff2) format('woff2'),url(https://static.wixstatic.com/ufonts/a0c786_9bcbca302e8a4721855ebf0507400050/woff/file.woff) format('woff');font-display:swap}
+@font-face{font-family:'wxP2';src:url(https://static.wixstatic.com/ufonts/96879d_48f41281027543b39fe9ab1bd07fb5f9/woff2/file.woff2) format('woff2'),url(https://static.wixstatic.com/ufonts/96879d_48f41281027543b39fe9ab1bd07fb5f9/woff/file.woff) format('woff');font-display:swap}
+  §.wxpg{background:#fff;color:#000;padding:u(44) u(30) u(72)}
+  §.wxpg__t{color:#865F55;text-transform:uppercase !important;font-family:'wxB',Arial,sans-serif !important;font-weight:400 !important;font-size:u(24) !important;letter-spacing:u(.48) !important;line-height:1.6 !important;margin:0 0 u(28) !important}
+  §.wxpg__c{font-family:'wxP2',Arial,sans-serif !important;font-size:u(14) !important;line-height:1.5;color:#000}
+  §.wxpg__c *{font-family:inherit !important}
+  §.wxpg__c p{margin:0 0 u(14);font-size:u(14) !important;line-height:1.5}
+  §.wxpg__c strong,§.wxpg__c b{font-weight:700 !important}
+  §.wxpg__c a{text-decoration:underline !important;color:inherit}
+  §.wxpg__c h2,§.wxpg__c h3{font-family:'wxP1',Arial,sans-serif !important;font-weight:400 !important;font-size:u(22) !important;line-height:1.5 !important;color:#000;margin:u(24) 0 u(8)}
+  §.wxpg__c ul,§.wxpg__c ol{margin:0 0 u(14) u(20);padding:0}
+  §.wxpg__c li{margin:0 0 u(6);font-size:u(14) !important;line-height:1.5}
+  §.wxpg__c table{width:100%;border-collapse:collapse;margin:u(8) 0 u(16)}
+  §.wxpg__c td,§.wxpg__c th{padding:u(10);border:1px solid rgba(240,240,240,.9);font-size:u(13) !important;text-align:left}
+  §.wxpg__c img{max-width:100%;height:auto;display:block;margin:u(12) 0}
+  §.wxpg__c details{border-bottom:1px solid #C2C2C2}
+  §.wxpg__c details summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:u(16);padding:u(16) 0;font-size:u(14) !important;line-height:1.4}
+  §.wxpg__c details summary::-webkit-details-marker{display:none}
+  §.wxpg__c details summary strong{font-weight:700 !important}
+  §.wxpg__c details summary::after{content:"";flex:0 0 auto;width:u(14);height:u(14);background:no-repeat center/contain url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15"><path fill="%23000" d="M8 7V2H7v5H2v1h5v5h1V8h5V7z"/></svg>');transition:transform .2s}
+  §.wxpg__c details[open] summary::after{background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15"><path fill="%23000" d="M2 7h11v1H2z"/></svg>')}
+  §.wxpg__c details > :not(summary){padding:0 0 u(16)}
+  @media (min-width:750px){
+    §.wxpg{padding:u(80) u(73) u(100)}
+    §.wxpg__t{font-size:u(42) !important;letter-spacing:u(10.5) !important;margin:0 0 u(44) !important}
+    §.wxpg__c,§.wxpg__c p,§.wxpg__c li{font-size:u(16) !important}
+    §.wxpg__c h2,§.wxpg__c h3{font-size:u(32) !important;margin:u(32) 0 u(10)}
+    §.wxpg__c td,§.wxpg__c th{font-size:u(14) !important}
+    §.wxpg__c details summary{font-size:u(16) !important;padding:u(20) 0}
+  }
+{%- endcapture -%}<style>{{ wxcss | replace: 'u(', 'calc(var(--u)*' | replace: '§', 'html:root body ' }}</style>

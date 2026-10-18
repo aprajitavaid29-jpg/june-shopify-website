@@ -1,0 +1,75 @@
+{%- comment -%} Wix replica collection page (shop-june.com/category/*), measured at 375px and 1440px. {%- endcomment -%}
+{%- render 'wx-base' -%}
+{%- assign sort = collection.sort_by | default: collection.default_sort_by -%}
+{%- capture chev -%}<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M18.2546728,8.18171329 L18.9617796,8.88882007 L12.5952867,15.2537133 L12.5978964,15.2558012 L11.8907896,15.962908 L11.8882867,15.9607133 L11.8874628,15.9617796 L11.180356,15.2546728 L11.1812867,15.2527133 L4.81828671,8.88882007 L5.52539349,8.18171329 L11.8882867,14.5457133 L18.2546728,8.18171329 Z"/></svg>{%- endcapture -%}
+{%- capture arrow -%}<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M8.70710678,4.99810828 L15.068,11.3651083 L15.0722115,11.3620693 L15.7793183,12.0691761 L15.776,12.0721083 L15.7782433,12.0758831 L15.0711365,12.7829899 L15.069,12.7801083 L8.70710678,19.1434929 L8,18.4363861 L14.361,12.0721083 L8,5.70521506 L8.70710678,4.99810828 Z"/></svg>{%- endcapture -%}
+{%- assign sorts = 'manual|Recommended,created-descending|Newest,price-ascending|Price (low to high),price-descending|Price (high to low)' | split: ',' -%}
+{%- assign sort_label = 'Recommended' -%}
+{%- for s in sorts -%}{%- assign kv = s | split: '|' -%}{%- if kv[0] == sort -%}{%- assign sort_label = kv[1] -%}{%- endif -%}{%- endfor -%}
+<div class="wx wxc" data-wxc>
+  <nav class="wxc__bc" aria-label="Breadcrumbs"><a href="{{ routes.root_url }}">Home</a>{{ arrow }}<span aria-current="page">{{ collection.title }}</span></nav>
+  <div class="wxc__head">
+    <h1 class="wxc__title wxH">{{ collection.title }}</h1>
+    <button type="button" class="wxc__cur wxB" aria-label="Currency">INR (₹){{ chev }}</button>
+  </div>
+  <div class="wxc__bar">
+    <p class="wxc__count wxH">{{ collection.products_count }} products</p>
+    <button type="button" class="wxc__sortm" data-wxc-open>Sort</button>
+    <div class="wxc__sortd">
+      <button type="button" class="wxc__sortbtn wxH" data-wxc-dd aria-expanded="false"><span>Sort by:</span> <span class="wxc__sortval">{{ sort_label }}</span>{{ chev }}</button>
+      <ul class="wxc__sortlist" hidden>
+        {%- for s in sorts -%}{%- assign kv = s | split: '|' -%}
+          <li><a href="?sort_by={{ kv[0] }}"{% if kv[0] == sort %} aria-current="true"{% endif %}>{{ kv[1] }}</a></li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+  {%- paginate collection.products by 44 -%}
+    <ul class="wxc__grid">
+      {%- for p in collection.products -%}
+        <li class="wxc__item">
+          <a class="wxc__img" href="{{ p.url }}">
+            {%- if p.featured_media -%}<img class="wxc__a" src="{{ p.featured_media | image_url: width: 900 }}" srcset="{{ p.featured_media | image_url: width: 450 }} 450w, {{ p.featured_media | image_url: width: 900 }} 900w" sizes="(min-width:750px) 31vw, 42vw" alt="{{ p.featured_media.alt | default: p.title | escape }}" {% if forloop.index > 4 %}loading="lazy"{% endif %}>{%- endif -%}
+            {%- if p.media.size > 1 -%}<img class="wxc__b" src="{{ p.media[1] | image_url: width: 900 }}" alt="" loading="lazy">{%- endif -%}
+            {%- if p.tags contains 'New In' -%}<span class="wxc__rib">New In</span>{%- endif -%}
+            <span class="wxc__heart" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M8.1816,5.0039 C7.9276,5.0039 7.6696,5.0279 7.4106,5.0759 C5.7326,5.3909 4.3566,6.8479 4.0646,8.6189 C3.9346,9.4039 4.0036,10.2029 4.2616,10.9319 C4.2636,10.9379 4.2656,10.9439 4.2676,10.9499 C5.1716,13.8579 10.2066,17.4019 11.7286,18.4189 C11.8966,18.5329 12.1076,18.5309 12.2746,18.4189 C13.7956,17.4019 18.8266,13.8589 19.7326,10.9499 C19.9966,10.2029 20.0646,9.4039 19.9356,8.6189 C19.6426,6.8479 18.2666,5.3909 16.5896,5.0759 C14.9596,4.7749 13.3646,5.4459 12.4126,6.8369 C12.2256,7.1099 11.7736,7.1099 11.5876,6.8369 C10.7866,5.6669 9.5276,5.0039 8.1816,5.0039 M12.0016,19.5029 C11.7136,19.5029 11.4246,19.4189 11.1726,19.2509 C9.1366,17.8899 4.2116,14.3829 3.3206,11.2869 C3.0026,10.3909 2.9196,9.4199 3.0786,8.4559 C3.4396,6.2559 5.1626,4.4459 7.2266,4.0589 C8.9706,3.7349 10.7346,4.3459 12.0016,5.6979 C13.2656,4.3459 15.0286,3.7349 16.7766,4.0589 C18.8406,4.4459 20.5636,6.2559 20.9246,8.4559 C21.0836,9.4199 20.9996,10.3909 20.6796,11.2869 C19.7876,14.3829 14.8636,17.8899 12.8306,19.2509 C12.5786,19.4189 12.2896,19.5029 12.0016,19.5029"/></svg></span>
+            <span class="wxc__qv wxH">Quick View</span>
+          </a>
+          <a class="wxc__info wxH" href="{{ p.url }}"><span class="wxc__name">{{ p.title }}</span><span class="wxc__price">₹{{ p.price | money_without_currency }}</span></a>
+        </li>
+      {%- endfor -%}
+    </ul>
+    <div class="wxc__pag">
+      {%- if paginate.pages > 1 -%}
+        <nav class="wxc__pagnav" aria-label="Pagination">
+          {%- if paginate.previous -%}<a class="wxc__pp" href="{{ paginate.previous.url }}" aria-label="Previous Page">{{ arrow }}</a>{%- else -%}<span class="wxc__pp is-off">{{ arrow }}</span>{%- endif -%}
+          <span class="wxc__pc">{{ paginate.current_page }}/{{ paginate.pages }}</span>
+          {%- if paginate.next -%}<a class="wxc__pn" href="{{ paginate.next.url }}" aria-label="Next Page">{{ arrow }}</a>{%- else -%}<span class="wxc__pn is-off">{{ arrow }}</span>{%- endif -%}
+        </nav>
+      {%- endif -%}
+    </div>
+  {%- endpaginate -%}
+  <div class="wxc__panel" data-wxc-panel hidden>
+    <div class="wxc__ph"><p>Sort <span>({{ collection.products_count }} products)</span></p><button type="button" data-wxc-close aria-label="Close"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.2"><path d="m3 3 14 14M17 3 3 17"/></svg></button></div>
+    <ul class="wxc__radios">
+      {%- for s in sorts -%}{%- assign kv = s | split: '|' -%}
+        <li><label><input type="radio" name="wxc-sort" value="{{ kv[0] }}"{% if kv[0] == sort %} checked{% endif %}><i></i>{{ kv[1] }}</label></li>
+      {%- endfor -%}
+    </ul>
+    <button type="button" class="wxc__apply wxH" data-wxc-apply>Apply</button>
+  </div>
+</div>
+<script>
+(function(){var r=document.querySelector('[data-wxc]');if(!r)return;
+  var dd=r.querySelector('[data-wxc-dd]'),list=r.querySelector('.wxc__sortlist'),panel=r.querySelector('[data-wxc-panel]');
+  dd.addEventListener('click',function(e){e.stopPropagation();list.hidden=!list.hidden;dd.setAttribute('aria-expanded',!list.hidden);});
+  document.addEventListener('click',function(){list.hidden=true;dd.setAttribute('aria-expanded','false');});
+  r.querySelector('[data-wxc-open]').addEventListener('click',function(){panel.hidden=false;document.body.classList.add('wx-lock');});
+  r.querySelector('[data-wxc-close]').addEventListener('click',function(){panel.hidden=true;document.body.classList.remove('wx-lock');});
+  r.querySelector('[data-wxc-apply]').addEventListener('click',function(){var c=r.querySelector('input[name=wxc-sort]:checked');location.search='?sort_by='+(c?c.value:'manual');});
+})();
+</script>
+{%- render 'wx-collection-css' -%}
+{% schema %}
+{ "name": "Wix collection", "settings": [] }
+{% endschema %}
