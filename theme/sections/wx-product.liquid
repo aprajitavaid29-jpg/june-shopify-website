@@ -30,7 +30,8 @@
       </div>
     </div>
     <div class="wxp__info">
-      <p class="wxp__sku">SKU: {{ cur.sku | default: wd.sku }}</p>
+      {%- capture wxsku -%}{%- render 'wx-sku', h: product.handle -%}{%- endcapture -%}
+      {%- if wxsku != blank -%}<p class="wxp__sku">SKU: {{ wxsku }}</p>{%- endif -%}
       <h1 class="wxp__title wxH">{{ product.title }}</h1>
       <p class="wxp__price" data-wxp-price>₹{{ cur.price | money_without_currency }}</p>
       {%- form 'product', product, class: 'wxp__form', data-wxp-form: '' -%}
@@ -67,11 +68,11 @@
           <span class="wxp__wish2" aria-hidden="true">{{ heart }}</span>
         </div>
       {%- endform -%}
-      <div class="wxp__desc wxH">{{ wd.description | default: product.description }}</div>
+      <div class="wxp__desc wxH">{{ wd.description | default: product.description | replace: 'https://www.shop-june.com/june-gold-forming?currency=INR', '/pages/june-gold-forming' | replace: 'https://www.shop-june.com/', '/' }}</div>
       {%- if wd.info.size > 0 -%}
         <ul class="wxp__acc">
           {%- for s in wd.info -%}
-            <li class="wxp__ai"><button type="button" class="wxp__ab" aria-expanded="false" data-wxp-acc><span class="wxH">{{ s.title }}</span>{{ plus }}</button><div class="wxp__ad wxH" hidden>{%- if s.ref -%}{%- render 'wx-info', k: s.ref -%}{%- else -%}{{ s.html }}{%- endif -%}</div></li>
+            <li class="wxp__ai"><button type="button" class="wxp__ab" aria-expanded="false" data-wxp-acc><span class="wxH">{{ s.title }}</span>{{ plus }}</button><div class="wxp__ad wxH" hidden>{%- if s.ref -%}{%- render 'wx-info', k: s.ref -%}{%- else -%}{{ s.html | replace: 'https://www.shop-june.com/june-gold-forming?currency=INR', '/pages/june-gold-forming' | replace: 'https://www.shop-june.com/returnportal', '/pages/return-form' | replace: ' target="_blank"', '' }}{%- endif -%}</div></li>
           {%- endfor -%}
         </ul>
       {%- endif -%}

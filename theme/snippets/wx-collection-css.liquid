@@ -74,4 +74,18 @@
     html:root body .wxc__pag{margin-top:u(4)}
     html:root body .wxc__pn{color:#000}
   }
+  /* Like the Wix Stores category widget: fixed pixel text and spacing at every screen width,
+     image columns stretch with the screen. */
+  html:root body .wxc{--u:1px}
+  html:root body .wxc__cur{display:none}
+  html:root body .wxc__bc svg{width:13.5px;height:13.5px;margin:0 4.2px 0 4.3px}
+  html:root body .wxc__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  html:root body .wxc__img{height:auto;aspect-ratio:157/209}
+  @media (min-width:750px){
+    /* side margin grows from 19px (1024) to 22px (1440); content no wider than 1553px */
+    html:root body .wxc{padding:4px calc(max(10.88px + .793vw, (100vw - 1553px) / 2) + 10px) 0}
+    html:root body .wxc__bc svg{width:13.5px;height:13.5px}
+    html:root body .wxc__grid{grid-template-columns:repeat(3,minmax(0,1fr));padding-left:0 !important}
+    html:root body .wxc__img{aspect-ratio:445/594}
+  }
 {%- endcapture -%}<style>{{ wxcss | replace: 'u(', 'calc(var(--u)*' }}</style>

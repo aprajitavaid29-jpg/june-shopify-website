@@ -12,5 +12,34 @@
   §.wxp__pre + .wxp__buy{margin-top:u(12)}
   §.wxps__i span{text-transform:inherit !important;letter-spacing:inherit !important;font-size:inherit !important;line-height:inherit !important}
   §.wxpp__it svg,§.wxps__i svg{max-width:none}
-  §.wxp__rib{display:none}
+  §.wxp__cur{display:none}
+
+  /* Like the Wix Stores widget, the product area and "You may also like" keep fixed pixel text and
+     spacing at every screen width; only their image columns stretch with the screen. */
+  §.wxp,§.wxpr{--u:1px}
+  §.wx .wxp__title{margin-top:0 !important}
+  §.wx .wxp__sku + .wxp__title{margin-top:12px !important}
+  §.wxp__stage{width:100%;height:auto;aspect-ratio:337/449}
+  §.wxpr{height:auto;padding-bottom:40px}
+  §.wxpr__it{flex-basis:calc((100% - 20px) / 2)}
+  §.wxpr__img{height:auto;aspect-ratio:159/212}
+  §.wxpr__nav{top:calc((100vw - 58px) / 2 * 212 / 159 / 2 - 12px)}
+  §.wxpr__nav--r{left:auto;right:34px}
+  @media (min-width:750px){
+    /* side margin 2.34% of the screen, content no wider than 1525px; thumbs 80 + 12, then the
+       image takes 60% of what is left (minus 36.8px), 120px gap, details column takes the rest */
+    §.wxp{padding:0 max(2.344vw, (100vw - 1525px) / 2)}
+    §.wxp__gal{width:calc((100% - 212px) * .6 - 36.8px + 92px);height:auto;align-items:stretch}
+    §.wxp__thumbs{height:auto;contain:size}
+    §.wxp__stage{flex:1;width:auto;aspect-ratio:659.5/879.3}
+    §.wxp__info{flex:1;width:auto}
+    §.wxpr{padding:61px max(4.6875vw, (100vw - 1450px) / 2) 120px}
+    §.wxpr__wrap{width:auto}
+    §.wxpr__it{flex-basis:calc((100% - 60px) / 4)}
+    §.wxpr__img{aspect-ratio:310.8/414.3}
+    §.wxpr__nav{top:calc((min(90.625vw, 1450px) - 60px) / 4 * 414.3 / 310.8 / 2 - 12px)}
+    §.wxpr__nav--l{left:16px}
+    §.wxpr__nav--r{right:16px}
+    §.wxp__rib{top:19.7px;left:19.7px;height:25.6px;padding:0 12px;font-size:14px !important;line-height:19.6px}
+  }
 {%- endcapture -%}<style>{{ wxcss | replace: 'u(', 'calc(var(--u)*' | replace: '§', 'html:root body ' }}</style>

@@ -15,7 +15,7 @@
   html:root body .wxpol__hero img{width:100%;height:100%;object-fit:cover;object-position:59% 43%}
   html:root body .wxpol__title{width:u(288);margin:u(11) 0 0 u(19);font-size:u(24) !important;line-height:u(38.4);letter-spacing:u(.48) !important;text-transform:uppercase !important;color:#865F55}
   html:root body .wxpol__body{width:u(337);margin:u(61) 0 0 u(19)}
-  html:root body .wxpol__body :where(p,li,h6,h2,h3,a,strong,em,span){font-family:inherit !important}
+  html:root body .wxpol__body :where(p,ul,ol,li,h6,h2,h3,a,strong,em,span){font-family:inherit !important}
   html:root body .wxpol__body :where(p,li){font-size:u(14) !important;line-height:u(21);color:#000}
   html:root body .wxpol__body :where(h6,h3){font-family:'wxA',Arial,sans-serif !important;font-size:u(16) !important;line-height:u(24);margin:0;color:#000}
   html:root body .wxpol__body h2{font-family:'wxD',Arial,sans-serif !important;font-size:u(32) !important;line-height:u(48);margin:0;color:#000}
@@ -30,7 +30,8 @@
     html:root body .wxpol__title{width:u(691);margin:u(34) 0 0 u(73);font-size:u(42) !important;line-height:u(67.2);letter-spacing:u(10.5) !important}
     html:root body .wxpol__body{width:u(1294);margin:u(60) 0 0 u(73)}
     html:root body .wxpol__body :where(p,li){font-size:u(16) !important;line-height:u(24)}
-    html:root body .wxpol__body :where(ul,ol){padding-left:u(32)}
+    html:root body .wxpol__body :where(ul,ol){padding-left:u(22)}
+    html:root body .wxpol__body li{padding-left:u(10)}
   }
 {%- endcapture -%}<style>{{ wxcss | replace: 'u(', 'calc(var(--u)*' }}</style>
 {% schema %}

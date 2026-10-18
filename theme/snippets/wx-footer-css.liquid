@@ -11,7 +11,7 @@
   §.wxft__note{width:u(254);margin-top:u(12) !important;color:#929292;font-size:u(10) !important;line-height:u(16);letter-spacing:u(.4) !important}
   §.wxft__social{display:flex;gap:u(16);margin-top:u(20.5)}
   §.wxft__social a{display:flex;align-items:center;justify-content:center;width:u(24);height:u(24)}
-  §.wxft__social svg{width:u(20);height:u(20)}
+  §.wxft__social svg{width:100%;height:100%}
   §.wxft__legal{display:none}
   §.wxft__copy{margin-top:u(19.5) !important;color:var(--wx-grey);text-transform:uppercase !important;font-size:u(9.9999) !important;letter-spacing:u(.399996) !important}
   §.wxft__cols{display:grid;grid-template-columns:u(146) u(146);margin:u(50) 0 0 u(47)}
@@ -20,8 +20,8 @@
   §.wxft__col ul{list-style:none;margin:u(4.5) 0 0 u(10) !important}
   §.wxft__col li{height:u(20.12)}
   §.wxft__col a{font-family:'wxF',Arial,sans-serif !important;font-weight:700;color:var(--wx-grey);text-transform:uppercase !important;font-size:u(8.65384) !important;line-height:u(12.1154);letter-spacing:u(.865384) !important}
-  §.wxwa{position:fixed;right:u(16);bottom:u(16);width:u(40);height:u(40);border-radius:50%;background:#000;display:flex;align-items:center;justify-content:center;z-index:50}
-  §.wxwa svg{width:u(22);height:u(22)}
+  §.wxwa{position:fixed;right:20px;bottom:20px;width:40px;height:40px;border-radius:50%;background:#000;display:flex;align-items:center;justify-content:center;z-index:50}
+  §.wxwa svg{width:25.8px;height:25.8px}
   @media (min-width:750px){
     §.wxft{display:flex;padding:u(48) 0 u(534.9) u(89)}
     §.wxft__left{align-items:flex-start;text-align:left;width:u(796)}
@@ -33,7 +33,6 @@
     §.wxft__note{width:u(376);margin-top:u(9) !important;font-size:u(15.9368) !important;line-height:u(25.4988);letter-spacing:u(.637471) !important}
     §.wxft__social{gap:u(14);margin-top:u(25)}
     §.wxft__social a{width:u(32);height:u(32)}
-    §.wxft__social svg{width:u(26);height:u(26)}
     §.wxft__legal{display:flex;gap:u(28);margin:u(97) 0 0 u(-6)}
     §.wxft__legal a{font-weight:700;color:#000;text-transform:uppercase !important;font-size:u(10.1251) !important;line-height:u(14.1751)}
     §.wxft__copy{margin:u(11) 0 0 u(-5) !important;font-size:u(10.1251) !important;letter-spacing:0 !important}
@@ -43,7 +42,10 @@
     §.wxft__col ul{margin:u(12) 0 0 u(10) !important}
     §.wxft__col li{height:u(31)}
     §.wxft__col a{font-family:'wxH',Arial,sans-serif !important;font-size:u(13.5) !important;line-height:u(18.9);letter-spacing:u(1.35) !important}
-    §.wxwa{right:u(30);bottom:u(30);width:u(60);height:u(60)}
-    §.wxwa svg{width:u(30);height:u(30)}
+    §.wxwa{right:30px;bottom:30px;width:60px;height:60px}
+    §.wxwa svg{width:36.6px;height:36.6px}
   }
+  /* the link for the page you are on is highlighted, as on Wix */
+  §.wxft__col a.is-on{color:#B64B2A}
+  @media (min-width:750px){§.wxft__col a.is-on{font-size:u(12) !important;letter-spacing:u(1.2) !important}}
 {%- endcapture -%}<style>{{ wxcss | replace: 'u(', 'calc(var(--u)*' | replace: '§', 'html:root body ' }}</style>

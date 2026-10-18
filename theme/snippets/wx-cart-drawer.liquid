@@ -71,6 +71,9 @@
     html:root body .wxcd__price{font-size:u(15) !important}
     html:root body .wxcd__thumb{width:u(88);height:u(110)}
   }
+  /* Wix's side cart keeps fixed pixel sizes at every screen width (full width on phones). */
+  html:root body .wxcd{--u:1px}
+  @media (max-width:749px){html:root body .wxcd__panel{max-width:none}}
 {%- endcapture -%}<style>{{ wxcss | replace: 'u(', 'calc(var(--u)*' }}</style>
 <script>
 (function(){

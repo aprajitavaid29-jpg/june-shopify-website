@@ -12,7 +12,7 @@
   function upd(){var s=sel();opts.forEach(function(f,k){var o=f.querySelector('[data-wxp-osel]');if(f.classList.contains('wxp__opt--color'))o.textContent=s[k]?': '+s[k]:'';if(s[k])f.querySelector('.wxp__err').hidden=true;});
     var v=vs.find(function(x){return x.options.every(function(o,k){return s[k]===null||s[k]===o;});});
     var full=vs.find(function(x){return x.options.every(function(o,k){return s[k]===o;});});
-    if(full){idIn.value=full.id;if(full.sku)sku.textContent='SKU: '+full.sku;}
+    if(full){idIn.value=full.id;}
     if(v)price.textContent=fmt((full||v).price);}
   opts.forEach(function(f){f.addEventListener('change',upd);});
   if(opts.length===0||vs.length===1){}

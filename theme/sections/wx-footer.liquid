@@ -28,7 +28,7 @@
       {%- assign l = linklists[h] -%}
       <div class="wxft__col">
         <h3>{{ l.title }}</h3>
-        <ul>{%- for link in l.links -%}<li><a href="{{ link.url }}">{{ link.title }}</a></li>{%- endfor -%}</ul>
+        <ul>{%- for link in l.links -%}<li><a href="{{ link.url }}"{% if link.current %} class="is-on" aria-current="page"{% endif %}>{{ link.title }}</a></li>{%- endfor -%}</ul>
       </div>
     {%- endfor -%}
   </div>
