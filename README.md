@@ -36,4 +36,7 @@ imported into Shopify.
 
 - `shopify-prices-2026-10-18.json` is a backup of every Shopify variant price before any sync.
 - `wix-prices-2026-10-18.json` holds the per-variant Wix prices.
-- `price-sync-plan.csv` lists the 1,136 variants (83 products) whose prices differ.
+- `price-sync-plan.csv` lists the 1,220 variants (83 products) whose prices were changed to the Wix prices
+  on 18 Oct 2026. This includes the 84 "Add a Necklace" variants, created when the
+  "Would you like to add a necklace?" option was added to the 14 charms to match Wix.
+  Afterwards every Shopify variant price matched Wix.
