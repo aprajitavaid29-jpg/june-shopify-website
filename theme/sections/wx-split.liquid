@@ -123,9 +123,9 @@
   html:root body .wxsp__top{position:relative;background:#FFFDFA}
   html:root body .wxsp__img--l,html:root body .wxsp__img--r{display:none}
   html:root body .wxsp__img--m{height:u(218)}
-  html:root body .wxsp--consult .wxsp__top{height:u(749)}
-  html:root body .wxsp--contact .wxsp__top{height:u(904)}
-  html:root body .wxsp--returns .wxsp__top{height:u(1127);background:#fff}
+  html:root body .wxsp--consult .wxsp__top{height:calc(var(--u) * 218 + 65.394vh)}
+  html:root body .wxsp--contact .wxsp__top{height:calc(var(--u) * 218 + 84.483vh)}
+  html:root body .wxsp--returns .wxsp__top{height:calc(var(--u) * 218 + 111.946vh);background:#fff}
   html:root body .wxsp__mid{text-align:center}
   html:root body .wxsp__ctitle{font-family:'wxD',Arial,sans-serif !important;width:u(295);margin:u(128) auto 0;font-size:u(15.385) !important;line-height:u(26.923);letter-spacing:u(4.615) !important;text-transform:uppercase !important;color:var(--c)}
   html:root body .wxsp__ctext{width:u(295);margin:u(20) auto 0}
@@ -155,17 +155,20 @@
   html:root body .wxsp__band{display:flex;align-items:center;justify-content:center;height:u(103);background:rgba(241,240,237,.6)}
   html:root body .wxsp--contact .wxsp__band{margin-bottom:u(45)}
   html:root body .wxsp__band p{font-family:'wxD',Arial,sans-serif !important;font-size:u(8.919) !important;line-height:u(13.378);letter-spacing:u(2.23) !important;text-transform:uppercase !important;color:var(--c)}
+  /* phone: the consultation text sits in the middle of the window-height panel below the photo */
+  @media (max-width:749px){html:root body .wxsp--consult .wxsp__ctitle{margin-top:calc(32.697vh - var(--u) * 137.5)}}
   @media (min-width:750px){
     html:root body .wxsp__top{background:#fff}
-    html:root body .wxsp--consult .wxsp__top,html:root body .wxsp--contact .wxsp__top{height:u(900)}
-    html:root body .wxsp--returns .wxsp__top{height:u(1147)}
+    html:root body .wxsp--consult .wxsp__top,html:root body .wxsp--contact .wxsp__top{height:100vh}
+    html:root body .wxsp--returns .wxsp__top{height:127.444vh}
     html:root body .wxsp__img--m{display:none}
     html:root body .wxsp__img--l,html:root body .wxsp__img--r{display:block;position:absolute;top:u(23);bottom:u(22)}
     html:root body .wxsp__img--l{left:0;width:u(438)}
     html:root body .wxsp__img--l img{object-position:63% 50%}
     html:root body .wxsp__img--r{left:u(991);width:u(449)}
     html:root body .wxsp__img--r img{object-position:29% 50%}
-    html:root body .wxsp__mid{position:absolute;left:u(438);width:u(553);top:0}
+    html:root body .wxsp__mid{position:absolute;left:u(438);width:u(553);top:calc(50vh - var(--u) * 450)}
+    html:root body .wxsp--returns .wxsp__mid{top:calc(63.722vh - var(--u) * 573.5)}
     html:root body .wxsp__ctitle{font-family:'wxA',Arial,sans-serif !important;width:u(486);margin-top:u(251);font-size:u(27) !important;line-height:u(43.2);letter-spacing:u(8.1) !important}
     html:root body .wxsp__ctext{width:u(387);margin-top:u(32)}
     html:root body .wxsp__ctext p,html:root body .wxsp__info p{font-size:u(16) !important;line-height:u(25.6)}
@@ -184,6 +187,21 @@
     html:root body .wxsp__band{height:u(178)}
     html:root body .wxsp--contact .wxsp__band{margin-bottom:0}
     html:root body .wxsp__band p{font-family:'wxD',Arial,sans-serif !important;font-size:u(19.125) !important;line-height:u(30.6);letter-spacing:u(5.737) !important}
+  }
+  /* Text Wix keeps at a fixed pixel size on every desktop width (the layout around it still scales). */
+  @media (min-width:750px){
+    html:root body .wxsp__call{font-size:16px !important;line-height:20px;letter-spacing:0 !important}
+    html:root body .wxsp__card h2{font-size:28px !important;line-height:35px}
+    html:root body .wxsp__ctext p{font-size:16px !important;line-height:25.6px}
+    html:root body .wxsp__info p{font-size:14px !important;line-height:22.4px}
+    html:root body .wxsp__ctxt p{font-size:16px !important;line-height:25.6px}
+    html:root body .wxsp__form input:not([type=hidden]){font-size:16px !important}
+    html:root body .wxsp__form select{font-size:16px !important}
+    html:root body .wxsp__form label{font-size:14px !important;line-height:19.6px}
+    html:root body .wxsp__ftitle{font-size:24px !important;line-height:36px}
+    html:root body .wxsp__submit{font-size:16px !important}
+    html:root body .wxsp__ok{font-size:14px !important;line-height:19.6px}
+    html:root body .wxsp__err{font-size:14px !important;line-height:19.6px}
   }
 {%- endcapture -%}<style>{{ wxcss | replace: 'u(', 'calc(var(--u)*' }}</style>
 {% schema %}

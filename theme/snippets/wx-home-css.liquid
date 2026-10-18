@@ -164,4 +164,12 @@
     html:root body .wxh-prom__ic--2{left:u(-45);width:u(25);height:u(25);top:u(1)}
     html:root body .wxh-prom__ic--3{left:u(-45);width:u(32);height:u(32);top:u(-3)}
   }
+  /* Text Wix keeps at a fixed pixel size on every desktop width (the layout around it still scales). */
+  @media (min-width:750px){
+    html:root body .wxh-card__name,html:root body .wxh-card__price{font-size:16px !important;line-height:24px}
+    html:root body .wxh .wx-arrowlink{font-size:13px !important;letter-spacing:.65px !important}
+    html:root body .wxh-slide--ev .wxh-slide__cta{font-size:14px !important;letter-spacing:.7px !important;line-height:18px}
+    html:root body .wxh-story__link{font-size:14px !important;letter-spacing:.7px !important}
+    html:root body .wxh-women__card figcaption{font-size:16px !important;line-height:20px}
+  }
 {%- endcapture -%}<style>{{ wxcss | replace: 'u(', 'calc(var(--u)*' }}</style>

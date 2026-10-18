@@ -106,8 +106,8 @@
 {%- capture wxcss -%}
   html:root body .wxab{color:var(--wx-brown-2);padding-bottom:u(64)}
   html:root body .wxab :where(img,video){display:block;width:100%;height:100%;object-fit:cover}
-  html:root body .wxab__hero{height:u(424);overflow:hidden}
-  html:root body .wxab__hero img{height:u(448)}
+  html:root body .wxab__hero{height:52.217vh;overflow:hidden}
+  html:root body .wxab__hero img{height:55.172vh}
   html:root body .wxab__tag{width:u(309);margin:u(28) auto 0;text-align:center;font-size:u(13.626) !important;line-height:u(23.164);letter-spacing:u(4.633) !important;text-transform:uppercase !important;color:var(--wx-brown-2)}
   html:root body .wxab__row{display:flex;flex-direction:column}
   html:root body .wxab__copy{text-align:center}
@@ -152,7 +152,7 @@
   html:root body .wxab__next{display:none}
   @media (min-width:750px){
     html:root body .wxab{padding-bottom:u(2)}
-    html:root body .wxab__hero{height:u(789)}
+    html:root body .wxab__hero{height:87.667vh}
     html:root body .wxab__hero img{height:100%;object-position:51% 64%}
     html:root body .wxab__tag{width:u(1080);margin-top:u(79);font-size:u(25.875) !important;line-height:u(38.812);letter-spacing:u(8.797) !important}
     html:root body .wxab__row{flex-direction:row;align-items:flex-start}
@@ -181,10 +181,10 @@
     html:root body .wxab__label--world{margin:u(126) 0 0 u(63)}
     html:root body .wxab__strip--m{display:none}
     html:root body .wxab__strip--d{display:flex;margin-top:u(49)}
-    html:root body .wxab__strip img{height:u(702)}
+    html:root body .wxab__strip img{width:auto;height:calc(79.5vh - 13.5px);aspect-ratio:calc(var(--w) / 702)}
     html:root body .wxab__text p{font-size:u(15.75) !important;line-height:u(26.775);letter-spacing:u(.63) !important}
     html:root body .wxab__text p + p{margin-top:u(26.775)}
-    html:root body .wxab__text--midas{width:u(949);margin-top:u(97)}
+    html:root body .wxab__text--midas{width:u(949);margin-top:u(97);height:calc(83vh - var(--u) * 227.5)}
     html:root body .wxab__text--iso{width:u(936);margin-top:u(97)}
     html:root body .wxab__label--tex{margin:u(282) 0 0 u(77)}
     html:root body .wxab__label--women{margin:u(86) 0 0 u(84)}
@@ -195,6 +195,12 @@
     html:root body .wxab__track figcaption{font-size:u(13) !important;line-height:u(16);font-weight:400 !important}
     html:root body .wxab__next{display:flex;position:absolute;left:u(1300);top:u(256);width:u(50);height:u(50);align-items:center;justify-content:center;padding:0;border:0;border-radius:50%;background:#fff;color:#000;cursor:pointer;box-shadow:0 0 u(4) rgba(0,0,0,.08)}
     html:root body .wxab__next svg{width:u(9);height:u(16)}
+  }
+  /* Text Wix keeps at a fixed pixel size on every desktop width (the layout around it still scales). */
+  @media (min-width:750px){
+    html:root body .wxab__link{font-size:14px !important;line-height:18px;letter-spacing:.7px !important}
+    html:root body .wxab__label{font-size:14px !important;line-height:18px;letter-spacing:.7px !important}
+    html:root body .wxab__track figcaption{font-size:13px !important;line-height:16px}
   }
 {%- endcapture -%}<style>{{ wxcss | replace: 'u(', 'calc(var(--u)*' }}</style>
 <script>

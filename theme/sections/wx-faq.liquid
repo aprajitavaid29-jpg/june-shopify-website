@@ -82,6 +82,13 @@ For any further assistance, feel free to reach out to us at <a target="_blank" h
     html:root body .wxfq__q span{line-height:u(22.4)}
     html:root body .wxfq__a :where(p,li,strong,a){line-height:u(24)}
   }
+  /* Text Wix keeps at a fixed pixel size on every desktop width (the layout around it still scales). */
+  @media (min-width:750px){
+    html:root body .wxfq__a :where(p,li,strong,a){font-size:14px !important;line-height:24px}
+    html:root body .wxfq__q span{font-size:16px !important;line-height:22.4px}
+    html:root body .wxfq__search input{font-size:16px !important}
+    html:root body .wxfq__title{font-size:32px !important;line-height:38.4px}
+  }
 {%- endcapture -%}<style>{{ wxcss | replace: 'u(', 'calc(var(--u)*' }}</style>
 <script>
   (function(){

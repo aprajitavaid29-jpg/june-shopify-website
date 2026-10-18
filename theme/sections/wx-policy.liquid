@@ -11,7 +11,7 @@
 </div>
 {%- capture wxcss -%}
   html:root body .wxpol{padding-bottom:u(10);color:#000}
-  html:root body .wxpol__hero{height:u(693);overflow:hidden}
+  html:root body .wxpol__hero{height:85.333vh;overflow:hidden}
   html:root body .wxpol__hero img{width:100%;height:100%;object-fit:cover;object-position:59% 43%}
   html:root body .wxpol__title{width:u(288);margin:u(11) 0 0 u(19);font-size:u(24) !important;line-height:u(38.4);letter-spacing:u(.48) !important;text-transform:uppercase !important;color:#865F55}
   html:root body .wxpol__body{width:u(337);margin:u(61) 0 0 u(19)}
@@ -26,12 +26,18 @@
   html:root body .wxpol__body a{text-decoration:none !important;color:inherit}
   @media (min-width:750px){
     html:root body .wxpol{padding-bottom:u(28)}
-    html:root body .wxpol__hero{height:u(768)}
     html:root body .wxpol__title{width:u(691);margin:u(34) 0 0 u(73);font-size:u(42) !important;line-height:u(67.2);letter-spacing:u(10.5) !important}
     html:root body .wxpol__body{width:u(1294);margin:u(60) 0 0 u(73)}
     html:root body .wxpol__body :where(p,li){font-size:u(16) !important;line-height:u(24)}
     html:root body .wxpol__body :where(ul,ol){padding-left:u(22)}
     html:root body .wxpol__body li{padding-left:u(10)}
+  }
+  /* Text Wix keeps at a fixed pixel size on every desktop width (the layout around it still scales). */
+  @media (min-width:750px){
+    html:root body .wxpol__body :where(p,li){font-size:16px !important;line-height:24px}
+    html:root body .wxpol__body :where(h6,h3){font-size:16px !important;line-height:24px}
+    html:root body .wxpol__body h2{font-size:32px !important;line-height:48px}
+    html:root body .wxpol__title{font-size:42px !important;line-height:67.2px;letter-spacing:10.5px !important}
   }
 {%- endcapture -%}<style>{{ wxcss | replace: 'u(', 'calc(var(--u)*' }}</style>
 {% schema %}

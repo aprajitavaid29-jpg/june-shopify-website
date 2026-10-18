@@ -14,7 +14,22 @@
   @font-face{font-family:'wxH';src:url('{{ 'wx-font-h.woff2' | file_url }}') format('woff2');font-display:swap}
   @font-face{font-family:'wxI';src:url('{{ 'wx-font-i.woff2' | file_url }}') format('woff2');font-display:swap}
   :root{--u:calc(100vw / 375);--wx-brown:#996E5C;--wx-brown-2:#A9806F;--wx-cream:#F7F5F1;--wx-grey:#6B6B6B;--wx-head:55px}
-  @media (min-width:750px){:root{--u:calc(100vw / 1440);--wx-head:u(68)}}
+  /* Desktop: like the Wix site, sections scale with the screen up to 1600px wide and then stay centred;
+     the header and footer keep scaling with the full width. */
+  @media (min-width:750px){
+    :root{--u:calc(min(100vw, 1600px) / 1440);--wx-head:calc(100vw / 1440 * 68)}
+    html:root body .wxhd,html:root body .wxft,html:root body .wxca__title{--u:calc(100vw / 1440)}
+  }
+  @media (min-width:1601px){
+    html:root body :is(.wxh,.wxab,.wxjg,.wxfq,.wxca,.wxsp,.wxgf,.wxpol,.wxpp,.wxps){max-width:1600px;margin-left:auto;margin-right:auto}
+    html:root body :is(.wxab__hero,.wxpol__hero,.wxfq__hero,.wxca__hero,.wxjg__vid,.wxgf__img){margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
+    html:root body :is(.wxh-new,.wxjg__forms,.wxgf__quiz,.wxgf__stuck,.wxsp__band,.wxps__band){clip-path:inset(0 -100vmax)}
+    html:root body .wxh-new{box-shadow:0 0 0 100vmax var(--wx-cream)}
+    html:root body .wxjg__forms{box-shadow:0 0 0 100vmax #F1F0ED}
+    html:root body .wxgf__quiz{box-shadow:0 0 0 100vmax #F7F5F1}
+    html:root body :is(.wxgf__stuck,.wxsp__band){box-shadow:0 0 0 100vmax rgba(241,240,237,.6)}
+    html:root body .wxps__band{box-shadow:0 0 0 100vmax #F1F0ED}
+  }
   body .wx, body .wx :where(*:not(svg,path,circle,rect,g)){font-family:'wxC',Arial,sans-serif !important;letter-spacing:normal !important;text-transform:none !important;box-sizing:border-box;font-weight:400}
   body .wx :where(span){font-family:inherit !important;letter-spacing:inherit !important;text-transform:inherit !important}
   html:root body .wx :where(h1,h2,h3,h4,strong,b){font-weight:400 !important}

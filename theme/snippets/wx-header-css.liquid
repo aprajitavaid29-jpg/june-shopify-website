@@ -44,4 +44,10 @@
     html:root body .wxhd__icons a{width:u(19);height:u(19)}
     html:root body .wxhd__icons svg{width:u(19);height:u(19)}
   }
+  /* Text Wix keeps at a fixed pixel size on every desktop width (the layout around it still scales). */
+  @media (min-width:750px){
+    html:root body .wxhd__di > a{font-size:11px !important;line-height:15px;letter-spacing:1.1px !important}
+    html:root body .wxhd__ddh{font-size:12px !important;letter-spacing:1.2px !important}
+    html:root body .wxhd__ddl{font-size:13px !important}
+  }
 {%- endcapture -%}<style>{{ wxcss | replace: 'u(', 'calc(var(--u)*' }}</style>

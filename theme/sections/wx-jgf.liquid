@@ -56,10 +56,10 @@
   html:root body .wxjg{--c:#996E5C;color:var(--c)}
   html:root body .wxjg :where(img,video){display:block;width:100%;height:100%;object-fit:cover}
   html:root body .wxjg__vid{position:relative;overflow:hidden;background:#EDEBE6}
-  html:root body .wxjg__vid--hero{height:u(763)}
-  html:root body .wxjg__vid--lab{height:u(812)}
+  html:root body .wxjg__vid--hero{height:94vh}
+  html:root body .wxjg__vid--lab{height:100vh}
   html:root body .wxjg__d{display:none !important}
-  html:root body .wxjg__intro{height:u(772);padding-top:u(157);text-align:center;background:#FFFDFA}
+  html:root body .wxjg__intro{height:96vh;padding-top:calc(48vh - var(--u) * 232.76);text-align:center;background:#FFFDFA}
   html:root body .wxjg__h1{width:u(285);margin:0 auto;font-size:u(18.269) !important;line-height:u(21.01);letter-spacing:u(.913) !important;text-transform:uppercase !important;color:#A9806F}
   html:root body .wxjg__copy{width:u(285);margin:u(20) auto 0}
   html:root body .wxjg__copy p{font-size:u(10) !important;line-height:u(18);letter-spacing:u(.4) !important;color:#A9806F}
@@ -82,9 +82,9 @@
   @media (min-width:750px){
     html:root body .wxjg__d{display:block !important}
     html:root body .wxjg__m{display:none !important}
-    html:root body .wxjg__vid--hero{height:u(855)}
-    html:root body .wxjg__vid--lab{height:u(900)}
-    html:root body .wxjg__intro{height:u(900);padding-top:u(159);background:#fff}
+    html:root body .wxjg__vid--hero{height:95vh}
+    html:root body .wxjg__vid--lab{height:100vh}
+    html:root body .wxjg__intro{height:100vh;padding-top:calc(50vh - var(--u) * 291);background:#fff}
     html:root body .wxjg__h1{width:u(855);font-size:u(27) !important;line-height:u(31.05);letter-spacing:u(1.35) !important}
     html:root body .wxjg__copy{width:u(1043);margin-top:u(34)}
     html:root body .wxjg__copy p{font-size:u(18) !important;line-height:u(36);letter-spacing:u(.72) !important}
@@ -103,6 +103,11 @@
     html:root body .wxjg__cat{width:calc((100% - var(--u) * 16) / 3);height:u(537)}
     html:root body .wxjg__catimg{height:u(382)}
     html:root body .wxjg__catlbl{margin-top:u(40);gap:u(12);font-size:u(14) !important;letter-spacing:u(.7) !important;line-height:u(18)}
+  }
+  /* Text Wix keeps at a fixed pixel size on every desktop width (the layout around it still scales). */
+  @media (min-width:750px){
+    html:root body .wxjg__more{font-size:13px !important;line-height:16px;letter-spacing:.65px !important}
+    html:root body .wxjg__catlbl{font-size:14px !important;line-height:18px;letter-spacing:.7px !important}
   }
 {%- endcapture -%}<style>{{ wxcss | replace: 'u(', 'calc(var(--u)*' }}</style>
 <script>
