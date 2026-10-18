@@ -169,7 +169,14 @@
     html:root body .wxh-card__name,html:root body .wxh-card__price{font-size:16px !important;line-height:24px}
     html:root body .wxh .wx-arrowlink{font-size:13px !important;letter-spacing:.65px !important}
     html:root body .wxh-slide--ev .wxh-slide__cta{font-size:14px !important;letter-spacing:.7px !important;line-height:18px}
-    html:root body .wxh-story__link{font-size:14px !important;letter-spacing:.7px !important}
+    html:root body .wxh .wxh-story__link{font-size:14px !important;letter-spacing:.7px !important}
+    html:root body .wxh-slide--hero .wxh-slide__cta{font-size:13px !important;letter-spacing:.65px !important;line-height:17px}
     html:root body .wxh-women__card figcaption{font-size:16px !important;line-height:20px}
+  }
+  /* Phone: text Wix keeps at a fixed pixel size on wider phones too (the layout around it still scales). */
+  @media (max-width:749px){
+    html:root body .wxh-card__name{font-size:12px !important;line-height:18.6px}
+    html:root body .wxh-card__price{font-size:12px !important;line-height:18px}
+    html:root body .wxh-women__card figcaption{font-size:15px !important;line-height:18px}
   }
 {%- endcapture -%}<style>{{ wxcss | replace: 'u(', 'calc(var(--u)*' }}</style>

@@ -144,7 +144,7 @@
   html:root body .wxsp__submit{display:block;width:100%;height:u(41);margin-top:u(12);border:0;border-radius:0;background:#996E5C;color:#fff;font-size:u(16) !important;cursor:pointer}
   html:root body .wxsp__ok,html:root body .wxsp__err{margin-top:u(9);font-size:u(14) !important;line-height:u(19.6);color:var(--c)}
   html:root body .wxsp__cards{padding:u(28) 0 u(29)}
-  html:root body .wxsp__card{position:relative;width:u(317);height:calc(var(--u) * var(--hm));margin:0 0 u(20) u(29);padding:u(83) u(29) 0;border:1px solid rgba(0,0,0,.25);color:#000}
+  html:root body .wxsp__card{position:relative;width:u(317);height:auto;margin:0 0 u(20) u(29);padding:u(83) u(29) u(75.5);border:1px solid rgba(0,0,0,.25);color:#000}
   html:root body .wxsp__card:last-child{margin-bottom:0}
   html:root body .wxsp__carrow{position:absolute;left:u(29);top:u(29);width:u(43);height:u(22);color:var(--c)}
   html:root body .wxsp__card h2{font-size:u(20) !important;line-height:u(25);color:var(--c)}
@@ -168,7 +168,7 @@
     html:root body .wxsp__img--r{left:u(991);width:u(449)}
     html:root body .wxsp__img--r img{object-position:29% 50%}
     html:root body .wxsp__mid{position:absolute;left:u(438);width:u(553);top:calc(50vh - var(--u) * 450)}
-    html:root body .wxsp--returns .wxsp__mid{top:calc(63.722vh - var(--u) * 573.5)}
+    html:root body .wxsp--returns .wxsp__mid{top:calc(63.722vh - 573.5px)}
     html:root body .wxsp__ctitle{font-family:'wxA',Arial,sans-serif !important;width:u(486);margin-top:u(251);font-size:u(27) !important;line-height:u(43.2);letter-spacing:u(8.1) !important}
     html:root body .wxsp__ctext{width:u(387);margin-top:u(32)}
     html:root body .wxsp__ctext p,html:root body .wxsp__info p{font-size:u(16) !important;line-height:u(25.6)}
@@ -177,8 +177,11 @@
     html:root body .wxsp__info{width:u(391);margin-top:u(249)}
     html:root body .wxsp__info p{font-size:u(14) !important;line-height:u(22.4)}
     html:root body .wxsp__form{position:absolute;left:u(503);top:u(268);width:u(423);margin:0}
+    /* the Wix form widget keeps fixed pixel spacing; only its position across the page scales */
+    html:root body .wxsp__form{--u:1px;left:calc(min(100vw, 1600px) / 1440 * 503);width:calc(min(100vw, 1600px) / 1440 * 423)}
     html:root body .wxsp__cards{display:grid;grid-template-columns:u(661) u(649);column-gap:u(40);row-gap:u(40);align-items:start;padding:u(90) 0 u(46) u(45)}
-    html:root body .wxsp__card{width:auto;height:calc(var(--u) * var(--hd));margin:0;padding:u(87) u(34) 0}
+    /* cards grow with their (fixed-size) text, as on Wix: content plus room for the big number */
+    html:root body .wxsp__card{width:auto;height:auto;margin:0;padding:u(87) u(34) u(162)}
     html:root body .wxsp__card:nth-child(even){margin-top:u(47)}
     html:root body .wxsp__carrow{left:u(34);top:u(34)}
     html:root body .wxsp__card h2{font-size:u(28) !important;line-height:u(35)}
@@ -193,6 +196,21 @@
     html:root body .wxsp__call{font-size:16px !important;line-height:20px;letter-spacing:0 !important}
     html:root body .wxsp__card h2{font-size:28px !important;line-height:35px}
     html:root body .wxsp__ctext p{font-size:16px !important;line-height:25.6px}
+    html:root body .wxsp__info p{font-size:14px !important;line-height:22.4px}
+    html:root body .wxsp__ctxt p{font-size:16px !important;line-height:25.6px}
+    html:root body .wxsp__form input:not([type=hidden]){font-size:16px !important}
+    html:root body .wxsp__form select{font-size:16px !important}
+    html:root body .wxsp__form label{font-size:14px !important;line-height:19.6px}
+    html:root body .wxsp__ftitle{font-size:24px !important;line-height:36px}
+    html:root body .wxsp__submit{font-size:16px !important}
+    html:root body .wxsp__ok{font-size:14px !important;line-height:19.6px}
+    html:root body .wxsp__err{font-size:14px !important;line-height:19.6px}
+  }
+  /* Phone: text Wix keeps at a fixed pixel size on wider phones too (the layout around it still scales). */
+  @media (max-width:749px){
+    html:root body .wxsp__call{font-size:12px !important;line-height:15px;letter-spacing:.6px !important}
+    html:root body .wxsp__card h2{font-size:20px !important;line-height:25px}
+    html:root body .wxsp__ctext p{font-size:14px !important;line-height:22.4px}
     html:root body .wxsp__info p{font-size:14px !important;line-height:22.4px}
     html:root body .wxsp__ctxt p{font-size:16px !important;line-height:25.6px}
     html:root body .wxsp__form input:not([type=hidden]){font-size:16px !important}

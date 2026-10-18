@@ -77,7 +77,8 @@ For any further assistance, feel free to reach out to us at <a target="_blank" h
     html:root body .wxfq__head{display:flex;align-items:flex-start;justify-content:space-between;margin-top:u(32)}
     html:root body .wxfq__title{width:auto;margin-top:u(2);font-size:u(32) !important;line-height:u(38.4)}
     html:root body .wxfq__search{width:u(280);margin:0 u(-6) 0 0}
-    html:root body .wxfq__list{margin-top:u(24)}
+    /* the Wix FAQ widget keeps fixed pixel spacing at every desktop width */
+    html:root body .wxfq__list{--u:1px;margin-top:u(24)}
     html:root body .wxfq__q{padding:u(25) 0}
     html:root body .wxfq__q span{line-height:u(22.4)}
     html:root body .wxfq__a :where(p,li,strong,a){line-height:u(24)}
@@ -88,6 +89,14 @@ For any further assistance, feel free to reach out to us at <a target="_blank" h
     html:root body .wxfq__q span{font-size:16px !important;line-height:22.4px}
     html:root body .wxfq__search input{font-size:16px !important}
     html:root body .wxfq__title{font-size:32px !important;line-height:38.4px}
+  }
+  /* Phone: text Wix keeps at a fixed pixel size on wider phones too (the layout around it still scales). */
+  @media (max-width:749px){
+    html:root body .wxfq__title{font-size:24px !important;line-height:28.8px}
+    html:root body .wxfq__a :where(p,li,strong,a){font-size:14px !important;line-height:21px}
+    html:root body .wxfq__list{--u:1px}
+    html:root body .wxfq__q span{font-size:16px !important;line-height:22px}
+    html:root body .wxfq__search input{font-size:16px !important}
   }
 {%- endcapture -%}<style>{{ wxcss | replace: 'u(', 'calc(var(--u)*' }}</style>
 <script>

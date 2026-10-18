@@ -184,7 +184,7 @@
     html:root body .wxab__strip img{width:auto;height:calc(79.5vh - 13.5px);aspect-ratio:calc(var(--w) / 702)}
     html:root body .wxab__text p{font-size:u(15.75) !important;line-height:u(26.775);letter-spacing:u(.63) !important}
     html:root body .wxab__text p + p{margin-top:u(26.775)}
-    html:root body .wxab__text--midas{width:u(949);margin-top:u(97);height:calc(83vh - var(--u) * 227.5)}
+    html:root body .wxab__text--midas{width:u(949);margin-top:u(97);height:calc(83vh - var(--u) * 452)}
     html:root body .wxab__text--iso{width:u(936);margin-top:u(97)}
     html:root body .wxab__label--tex{margin:u(282) 0 0 u(77)}
     html:root body .wxab__label--women{margin:u(86) 0 0 u(84)}
@@ -201,6 +201,11 @@
     html:root body .wxab__link{font-size:14px !important;line-height:18px;letter-spacing:.7px !important}
     html:root body .wxab__label{font-size:14px !important;line-height:18px;letter-spacing:.7px !important}
     html:root body .wxab__track figcaption{font-size:13px !important;line-height:16px}
+  }
+  /* Phone: text Wix keeps at a fixed pixel size on wider phones too (the layout around it still scales). */
+  @media (max-width:749px){
+    html:root body .wxab__link{font-size:12px !important;line-height:15px;letter-spacing:.6px !important}
+    html:root body .wxab__track figcaption{font-size:15px !important;line-height:19px}
   }
 {%- endcapture -%}<style>{{ wxcss | replace: 'u(', 'calc(var(--u)*' }}</style>
 <script>

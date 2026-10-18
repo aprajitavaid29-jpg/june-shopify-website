@@ -26,7 +26,7 @@
   html:root body .wxgf__img{height:u(355)}
   html:root body .wxgf__img img{width:100%;height:100%;object-fit:cover}
   @media (min-width:750px){
-    html:root body .wxgf__quiz{min-height:u(1012);padding-top:u(34)}
+    html:root body .wxgf__quiz{box-sizing:border-box;height:u(1041);padding-top:u(34);overflow:hidden}
     html:root body .wxgf__stuck{height:u(189);margin-top:u(29);padding-top:u(27)}
     html:root body .wxgf__txt{font-size:u(21.375) !important;line-height:u(38.475)}
     html:root body .wxgf__call{margin-top:u(26);font-size:u(16) !important;line-height:u(20);gap:u(12)}
@@ -36,6 +36,10 @@
   /* Text Wix keeps at a fixed pixel size on every desktop width (the layout around it still scales). */
   @media (min-width:750px){
     html:root body .wxgf__call{font-size:16px !important;line-height:20px}
+  }
+  /* Phone: text Wix keeps at a fixed pixel size on wider phones too (the layout around it still scales). */
+  @media (max-width:749px){
+    html:root body .wxgf__call{font-size:12px !important;line-height:15px}
   }
 {%- endcapture -%}<style>{{ wxcss | replace: 'u(', 'calc(var(--u)*' }}</style>
 {% schema %}

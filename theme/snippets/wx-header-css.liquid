@@ -30,7 +30,7 @@
   html:root body .wxhd__sub2 a{font-size:u(13) !important;color:var(--wx-grey)}
   body.wx-lock{overflow:hidden}
   @media (min-width:750px){
-    html:root body .wxhd__logo{left:u(34);top:0;width:u(105);height:u(67)}
+    html:root body .wxhd__logo{left:u(34);top:calc((var(--wx-head) - var(--u) * 67) / 2);width:u(105);height:u(67)}
     html:root body .wxhd__burger{display:none !important}
     html:root body .wxhd__desk{display:flex;position:absolute;top:0;bottom:0;right:u(181);align-items:center;gap:u(48)}
     html:root body .wxhd__di{position:relative;height:100%;display:flex;align-items:center}
@@ -47,6 +47,7 @@
   /* Text Wix keeps at a fixed pixel size on every desktop width (the layout around it still scales). */
   @media (min-width:750px){
     html:root body .wxhd__di > a{font-size:11px !important;line-height:15px;letter-spacing:1.1px !important}
+    html:root body .wxhd__desk{gap:48px}
     html:root body .wxhd__ddh{font-size:12px !important;letter-spacing:1.2px !important}
     html:root body .wxhd__ddl{font-size:13px !important}
   }

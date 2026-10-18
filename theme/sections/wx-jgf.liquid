@@ -109,6 +109,11 @@
     html:root body .wxjg__more{font-size:13px !important;line-height:16px;letter-spacing:.65px !important}
     html:root body .wxjg__catlbl{font-size:14px !important;line-height:18px;letter-spacing:.7px !important}
   }
+  /* Phone: text Wix keeps at a fixed pixel size on wider phones too (the layout around it still scales). */
+  @media (max-width:749px){
+    html:root body .wxjg__more{font-size:11px !important;line-height:14px;letter-spacing:.55px !important}
+    html:root body .wxjg__form p{font-size:12px !important;line-height:21px;letter-spacing:.12px !important}
+  }
 {%- endcapture -%}<style>{{ wxcss | replace: 'u(', 'calc(var(--u)*' }}</style>
 <script>
   (function(){

@@ -52,4 +52,5 @@
     §.wxft__col a.is-on{font-size:12px !important;letter-spacing:1.2px !important}
     §.wxft__row button{font-size:11px !important;line-height:13.2px}
   }
+  @media (max-width:749px){§.wxft__row button{font-size:10px !important;line-height:12px}§.wxft__col a.is-on{font-size:8.65384px !important;letter-spacing:.865384px !important}}
 {%- endcapture -%}<style>{{ wxcss | replace: 'u(', 'calc(var(--u)*' | replace: '§', 'html:root body ' }}</style>

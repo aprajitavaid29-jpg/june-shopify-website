@@ -61,6 +61,15 @@
     html:root body .wxca__sub button{font-size:16px !important}
     html:root body .wxca__upbtn{font-size:16px !important}
   }
+  /* Phone: text Wix keeps at a fixed pixel size on wider phones too (the layout around it still scales). */
+  @media (max-width:749px){
+    html:root body .wxca__form input:not([type=hidden]){font-size:16px !important}
+    html:root body .wxca__form label{font-size:14px !important;line-height:19.6px}
+    html:root body .wxca__uplabel{font-size:14px !important;line-height:19.6px}
+    html:root body .wxca__msg{font-size:14px !important;line-height:19.6px}
+    html:root body .wxca__sub button{font-size:16px !important}
+    html:root body .wxca__upbtn{font-size:16px !important}
+  }
 {%- endcapture -%}<style>{{ wxcss | replace: 'u(', 'calc(var(--u)*' }}</style>
 {% schema %}
 { "name": "Wix careers", "settings": [], "presets": [{ "name": "Wix careers" }] }
